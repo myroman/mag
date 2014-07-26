@@ -62,7 +62,8 @@
   <script type="text/html" id="sale-template">
     <td>...</td>
     <td>
-      <input type="text" data-bind='value: agent.name' /></td>
+      <select data-bind="options: $root.agents, optionsText: 'name', value:$root.editedAgent, optionsCaption: 'Выберите...'"></select>
+    </td>
     <td>
       <input type="text" data-bind='value: reportCode' /></td>
     <td>

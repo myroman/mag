@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using Autofac;
 
@@ -13,23 +12,32 @@ namespace Mag.Web.Pages
 {
     public partial class AgentSales : System.Web.UI.Page
     {
-        private IEnumerable<Sale> Sales { get; set; }
+        private IAgentsRepository agentsRepository;
+
+        private ISalesRepository salesRepository;
 
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
 
-            // now we fetch sales for all users. this will be changed once I implement logging in.
             var container = Context.GetContainer();
 
-            var salesProvider = container.Resolve<ISalesRepository>();
-            Sales = salesProvider.ReadSales();
-            //rptSales.DataSource = sales;
+            salesRepository = container.Resolve<ISalesRepository>();
+            agentsRepository = container.Resolve<IAgentsRepository>();
+            
         }
 
         protected string JsonModel
         {
-            get { return JsonConvert.SerializeObject(Sales, Formatting.Indented); }
+            get
+            {
+                var model = new
+                    {
+                        sales = salesRepository.ReadSales(),
+                        agents = agentsRepository.List()
+                    };
+                return JsonConvert.SerializeObject(model, Formatting.Indented);
+            }
         }
 
         protected override void OnLoad(EventArgs e)

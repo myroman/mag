@@ -1,12 +1,9 @@
 ﻿function SalesVm(model) {
   var it = this;
 
-  it.items = ko.observableArray(model);
+  it.items = ko.observableArray(model.sales);
   it.editedSaleData = {
-    id: 132,
     agent: {
-      id: 1,
-      name: ko.observable('')
     },
     insurance: {
       id: 1,
@@ -16,8 +13,12 @@
     create: ko.observable('')
   };
   
+  it.editedAgent = ko.observable({
+    id: 0,
+    name: ''
+  });
+  
   function clearSale(x) {
-    x.agent.name('');
     x.reportCode('');
     x.create('');
   }
@@ -26,22 +27,29 @@
 
   it.saveNewItem = function () {
     var copy = ko.toJS(it.editedSaleData);
-    
-    $.ajax('/Handlers/ApiHandler.axd', {
+    copy.agent = {
+      id: it.editedAgent().id,
+      name: it.editedAgent().name
+    };
+
+    $.ajax('/ApiHandler.axd', {
       data: {
         entity: 'sale',
         action: 'add',
         object: ko.toJSON(copy)
       },
-      type: 'GET',
+      type: 'POST',
       dataType: 'json',
-      contentType: 'application/json; charset=utf-8',
-      success: function (resp) {
+      success: function(resp) {
         it.items.push(resp);
         clearSale(it.editedSaleData);
+        it.editedAgent().id = 0;
+        it.editedAgent().name = 0;
       }
     });
   };
+
+  it.agents = ko.observableArray(model.agents);
 }
 
 $(function() {
@@ -54,9 +62,6 @@ $(function() {
         }
       },
       update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-        // This will be called once when the binding is first applied to an element,
-        // and again whenever any observables/computeds that are accessed change
-        // Update the DOM element based on the supplied values here.
       }
     };
 
