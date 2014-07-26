@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Mag" Class="DataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=Mag;Persist Security Info=True;User ID=sa" SettingsObjectName="Mag.Business.Properties.Settings" SettingsPropertyName="MagConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbSales" Member="tbSales">
+    <Type Name="tbSale">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="agentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="reportCode" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="createDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="insuranceTypeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="contractsNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="premium" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="paymentsNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="paidSum" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="feePercent" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="comment" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="addFeePercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="tbInsuranceType_tbSale" Member="tbInsuranceType" ThisKey="insuranceTypeId" OtherKey="id" Type="tbInsuranceType" IsForeignKey="true" />
+      <Association Name="tbAgent_tbSale" Member="tbAgent" ThisKey="agentId" OtherKey="id" Type="tbAgent" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbInsuranceTypes" Member="tbInsuranceTypes">
+    <Type Name="tbInsuranceType">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="tbInsuranceType_tbSale" Member="tbSales" ThisKey="id" OtherKey="insuranceTypeId" Type="tbSale" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbAgents" Member="tbAgents">
+    <Type Name="tbAgent">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="patronym" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="surname" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="regDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tbAgent_tbSale" Member="tbSales" ThisKey="id" OtherKey="agentId" Type="tbSale" />
+    </Type>
+  </Table>
+</Database>
