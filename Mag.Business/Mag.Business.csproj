@@ -33,6 +33,9 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -46,7 +49,7 @@
   <ItemGroup>
     <Compile Include="Abstract\IAgentsRepository.cs" />
     <Compile Include="Abstract\IInsuranceTypesRepository.cs" />
-    <Compile Include="Abstract\ISalesProvider.cs" />
+    <Compile Include="Abstract\ISalesRepository.cs" />
     <Compile Include="DataContext.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,7 +68,7 @@
     <Compile Include="Repositories\Mappers\AgentsMapper.cs" />
     <Compile Include="Repositories\Mappers\InsuranceTypesMapper.cs" />
     <Compile Include="Repositories\Mappers\SalesMapper.cs" />
-    <Compile Include="Repositories\SalesProvider.cs" />
+    <Compile Include="Repositories\SalesRepository.cs" />
     <Compile Include="Repositories\SqlAgentRepository.cs" />
     <Compile Include="Repositories\SqlInsuranceTypesRepository.cs" />
     <Compile Include="Repositories\SqlRepositoryBase.cs" />

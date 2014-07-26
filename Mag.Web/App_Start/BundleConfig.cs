@@ -4,31 +4,17 @@ namespace Mag.Web.App_Start
 {
     public class BundleConfig
     {
-        // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254726
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/scripts/knockout-3.1.0.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/WebFormsJs").Include(
-                  "~/Scripts/WebForms/WebForms.js",
-                  "~/Scripts/WebForms/WebUIValidation.js",
-                  "~/Scripts/WebForms/MenuStandards.js",
-                  "~/Scripts/WebForms/Focus.js",
-                  "~/Scripts/WebForms/GridView.js",
-                  "~/Scripts/WebForms/DetailsView.js",
-                  "~/Scripts/WebForms/TreeView.js",
-                  "~/Scripts/WebForms/WebParts.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/MsAjaxJs").Include(
-                "~/Scripts/WebForms/MsAjax/MicrosoftAjax.js",
-                "~/Scripts/WebForms/MsAjax/MicrosoftAjaxApplicationServices.js",
-                "~/Scripts/WebForms/MsAjax/MicrosoftAjaxTimer.js",
-                "~/Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js"));
-
-            // Use the Development version of Modernizr to develop with and learn from. Then, when you’re
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/js/sales").Include(
+                "~/scripts/jquery-2.1.1.js",
+                "~/scripts/jquery-ui.js",
+                "~/scripts/knockout-3.1.0.js",
+                "~/scripts/my/sales.js"
+                ));
+            bundles.Add(new Bundle("~/bundles/css/jquery-ui").Include(
+                "~/content/jquery-ui/jquery-ui.css"
+                ));
         }
     }
 }

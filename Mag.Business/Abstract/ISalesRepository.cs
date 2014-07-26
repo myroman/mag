@@ -4,8 +4,10 @@ using Mag.Business.Domain;
 
 namespace Mag.Business.Abstract
 {
-    public interface ISalesProvider
+    public interface ISalesRepository
     {
         IEnumerable<Sale> ReadSales();
+
+        Sale Add(Sale sale);
     }
 }

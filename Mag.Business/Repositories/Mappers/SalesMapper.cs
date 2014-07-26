@@ -8,6 +8,7 @@ namespace Mag.Business.Repositories.Mappers
         {
             var domain = new Sale
                 {
+                    Id = from.id,
                     ReportCode = from.reportCode,
                     CreateDate = from.createDate,
                     ContractsNumber = from.contractsNumber,
@@ -19,6 +20,25 @@ namespace Mag.Business.Repositories.Mappers
                     AddFeePercent = from.addFeePercent
                 };
             return domain;
+        }
+
+        public static tbSale ToItem(this Sale from)
+        {
+            var item = new tbSale
+                {
+                    agentId = from.Agent.Id,
+                    insuranceTypeId = from.Insurance.Id,
+                    reportCode = from.ReportCode,
+                    createDate = from.CreateDate,
+                    contractsNumber = from.ContractsNumber,
+                    premium = from.Premium,
+                    paymentsNumber = from.PaymentsNumber,
+                    paidSum = from.PaidSum,
+                    feePercent = from.FeePercent,
+                    comment = from.Comment,
+                    addFeePercent = from.AddFeePercent
+                };
+            return item;
         }
     }
 }

@@ -7,13 +7,13 @@ using Mag.Business.Repositories.Mappers;
 
 namespace Mag.Business.Repositories
 {
-    public class SalesProvider : SqlRepositoryBase, ISalesProvider
+    public class SalesRepository : SqlRepositoryBase, ISalesRepository
     {
         private readonly IAgentsRepository agentsRepository;
 
         private readonly IInsuranceTypesRepository insuranceTypesRepository;
 
-        public SalesProvider(
+        public SalesRepository(
             string connectionString,
             IAgentsRepository agentsRepository,
             IInsuranceTypesRepository insuranceTypesRepository)
@@ -36,6 +36,16 @@ namespace Mag.Business.Repositories
             }
 
             return sales;
+        }
+
+        public Sale Add(Sale sale)
+        {
+            var item = sale.ToItem();
+            DataContext.tbSales.InsertOnSubmit(item);
+            DataContext.SubmitChanges();
+
+            sale.Id = item.id;
+            return sale;
         }
     }
 }

@@ -12,5 +12,13 @@ namespace Mag.Business.Repositories.Mappers
                     Name = from.name
                 };
         }
+
+        public static tbInsuranceType ToItem(this InsuranceType from)
+        {
+            return new tbInsuranceType
+                {
+                    name = from.Name
+                };
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 
 using Mag.Business.Repositories;
+using Mag.Web.Handlers.ApiControllers;
 
 namespace Mag.Web.AutofacSupport
 {
@@ -12,6 +13,7 @@ namespace Mag.Web.AutofacSupport
             var builder = new ContainerBuilder();
 
             builder.RegisterModule<DomainRegistrationModule>();
+            builder.RegisterModule<ControllersRegistrationModule>();
 
             return builder.Build();
         }

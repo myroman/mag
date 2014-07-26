@@ -16,5 +16,17 @@ namespace Mag.Business.Repositories.Mappers
                     IsAdmin = from.isAdmin
                 };
         }
+
+        public static tbAgent ToItem(this Agent from)
+        {
+            return new tbAgent
+                {
+                    name = from.Name,
+                    patronym = from.Patronym,
+                    surname = from.Surname,
+                    regDate = from.RegistrationDate,
+                    isAdmin = from.IsAdmin
+                };
+        }
     }
 }

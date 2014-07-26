@@ -13,8 +13,8 @@ namespace Mag.Business.Repositories
         protected override void Load(ContainerBuilder builder)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["MyConnString"].ConnectionString;
-            builder.RegisterType<SalesProvider>()
-                .As<ISalesProvider>()
+            builder.RegisterType<SalesRepository>()
+                .As<ISalesRepository>()
                 .WithParameter(ConnectionStringParam, connectionString)
                 .SingleInstance();
 
