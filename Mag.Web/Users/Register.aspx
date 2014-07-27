@@ -9,6 +9,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
+      <asp:Label runat="server" ID="lblError" />
+
       <asp:Panel runat="server">
         <label for="<%# txtUserName.ClientID %>">Юзер</label>
         <asp:TextBox runat="server" ID="txtUserName" />

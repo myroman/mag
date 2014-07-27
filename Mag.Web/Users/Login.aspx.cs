@@ -11,7 +11,7 @@ using Mag.Web.AutofacSupport;
 
 namespace Mag.Web.Users
 {
-    public partial class Register : Page
+    public partial class Login : Page
     {
         private IUserService userService;
 
@@ -19,24 +19,23 @@ namespace Mag.Web.Users
         {
             base.OnLoad(e);
             userService = Context.GetContainer().Resolve<IUserService>();
-            btnRegister.Click += BtnRegisterOnClick;
+
+            btnSubmit.Click += BtnSubmitOnClick;
         }
 
-        private void BtnRegisterOnClick(object sender, EventArgs eventArgs)
+        private void BtnSubmitOnClick(object sender, EventArgs eventArgs)
         {
-            var newAgent = new Agent
+            var user = new Agent
                 {
                     Name = txtUserName.Text,
                     Password = txtPassword.Text
                 };
             try
             {
-                userService.RegisterUser(newAgent);
-                if (!string.IsNullOrEmpty(newAgent.PasswordHash))
-                {
-                    Context.Response.AppendCookie(new HttpCookie("hash", newAgent.PasswordHash));
-                }
-                Context.Response.Redirect("~/");
+                userService.Login(user);
+
+                Response.AppendCookie(new HttpCookie("hash", user.PasswordHash));
+                Response.Redirect("~/");
             }
             catch (DomainException exc)
             {

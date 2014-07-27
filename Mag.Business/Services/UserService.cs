@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 using Mag.Business.Abstract;
 using Mag.Business.Domain;
@@ -19,10 +20,30 @@ namespace Mag.Business.Services
 
         public void RegisterUser(Agent agent)
         {
+            if (agentsRepository.FindByLogin(agent.Name) != null)
+            {
+                throw new DomainException("Такой пользователь уже зарегистрирован");
+            }
+
             EncryptPassword(agent);
             agent.RegistrationDate = DateTime.Now;
 
             agentsRepository.Add(agent);
+        }
+
+        public void Login(Agent agent)
+        {
+            var foundAgent = agentsRepository.FindByLogin(agent.Name);
+            if (foundAgent == null)
+            {
+                throw new DomainException("Такого пользователя нет");
+            }
+
+            EncryptPassword(agent);
+            if (foundAgent.PasswordHash != agent.PasswordHash)
+            {
+                throw new DomainException("Пароль введен неверно");
+            }
         }
 
         private void EncryptPassword(Agent agent)
@@ -39,6 +60,16 @@ namespace Mag.Business.Services
             {
                 throw new DomainException("Error when encrypting", exc);
             }
+        }
+
+        public void Logout(Agent agent)
+        {
+            
+        }
+
+        public Agent GetCurrentUserByHash(string passwordHash)
+        {
+            return agentsRepository.List().FirstOrDefault(x => x.PasswordHash.Equals(passwordHash));
         }
     }
 }

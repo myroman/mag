@@ -164,7 +164,8 @@
     <Content Include="Content\jquery-ui\jquery-ui.structure.min.css" />
     <Content Include="Content\jquery-ui\jquery-ui.theme.css" />
     <Content Include="Content\jquery-ui\jquery-ui.theme.min.css" />
-    <Content Include="Content\sales.css" />
+    <Content Include="Content\blocks\b-options.css" />
+    <Content Include="Content\blocks\b-sales.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -220,6 +221,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Default.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -233,7 +235,6 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
-    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
@@ -266,12 +267,14 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Users\Login.aspx" />
     <Content Include="Users\Register.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Handlers\Logout.ashx" />
     <None Include="Scripts\_references.js" />
     <Content Include="Site.Mobile.Master" />
     <None Include="Web.Debug.config">
@@ -352,6 +355,9 @@
     <Compile Include="Handlers\ApiControllers\IApiController.cs" />
     <Compile Include="Handlers\ApiControllers\SaleController.cs" />
     <Compile Include="Handlers\ApiHandler.cs" />
+    <Compile Include="Handlers\Logout.ashx.cs">
+      <DependentUpon>Logout.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AgentSales.aspx.cs">
       <DependentUpon>AgentSales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -373,6 +379,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Users\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Users\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

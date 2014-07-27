@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Mag.Business.Abstract;
@@ -26,6 +27,11 @@ namespace Mag.Business.Repositories
                 return rec.ToDomain();
             }
             return null;
+        }
+
+        public Agent FindByLogin(string userName)
+        {
+            return List().FirstOrDefault(agent => agent.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
         }
 
         public void Add(Agent agent)
