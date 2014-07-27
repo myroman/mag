@@ -30,9 +30,10 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="patronym" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Column Name="surname" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="surname" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Column Name="regDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="isAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="passwordHash" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Association Name="tbAgent_tbSale" Member="tbSales" ThisKey="id" OtherKey="agentId" Type="tbSale" />
     </Type>
   </Table>

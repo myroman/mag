@@ -27,5 +27,11 @@ namespace Mag.Business.Repositories
             }
             return null;
         }
+
+        public void Add(Agent agent)
+        {
+            DataContext.tbAgents.InsertOnSubmit(agent.ToItem());
+            DataContext.SubmitChanges();
+        }
     }
 }

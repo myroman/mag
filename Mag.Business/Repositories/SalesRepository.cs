@@ -30,8 +30,15 @@ namespace Mag.Business.Repositories
             {
                 var sale = entity.ToDomain();
                 sale.Agent = agentsRepository.Read(entity.agentId);
+                if (sale.Agent == null)
+                {
+                    throw new DomainException("Agent is not set");
+                }
                 sale.Insurance = insuranceTypesRepository.Read(entity.insuranceTypeId);
-
+                if (sale.Insurance == null)
+                {
+                    throw new DomainException("Insurance is not set");
+                }
                 sales.Add(sale);
             }
 

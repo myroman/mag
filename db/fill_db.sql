@@ -18,9 +18,10 @@ create table tbAgents
 [id] int identity(1, 1),
 [name] varchar(200) not null,
 [patronym] varchar(200),
-[surname] varchar(200) not null,
+[surname] varchar(200),
 [regDate] datetime not null,
 [isAdmin] bit,
+[passwordHash] varchar(100) not null,
 
 constraint PK_AgentId primary key([id])
 )
@@ -57,11 +58,11 @@ constraint PK_SaleInsuranceType foreign key(insuranceTypeId) references tbInsura
 )
 
 -- +++++++++ Filling tables with info ++++++++++++ --
-insert into tbAgents([name],[surname],[regdate],[isadmin])
-values ('Roman', 'Smith', '2014/03/05', 1)
+insert into tbAgents([name],[surname],[regdate],[isadmin],[passwordHash])
+values ('Roman', 'Smith', '2014/03/05', 1, '123456')
 insert into tbAgents
-([name],[surname],[regdate],[isadmin])
-values ('John', 'Richie', '2014/06/01', 0)
+([name],[surname],[regdate],[isadmin], [passwordHash])
+values ('John', 'Richie', '2014/06/01', 0, '123456')
 
 insert into tbInsuranceTypes([name])
 values ('Type1')

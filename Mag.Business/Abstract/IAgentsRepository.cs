@@ -9,5 +9,7 @@ namespace Mag.Business.Abstract
         IEnumerable<Agent> List();
 
         Agent Read(int id);
+
+        void Add(Agent agent);
     }
 }

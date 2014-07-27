@@ -13,7 +13,8 @@ namespace Mag.Business.Repositories.Mappers
                     Patronym = from.patronym,
                     Surname = from.surname,
                     RegistrationDate = from.regDate,
-                    IsAdmin = from.isAdmin
+                    IsAdmin = from.isAdmin,
+                    PasswordHash = from.passwordHash,
                 };
         }
 
@@ -25,7 +26,8 @@ namespace Mag.Business.Repositories.Mappers
                     patronym = from.Patronym,
                     surname = from.Surname,
                     regDate = from.RegistrationDate,
-                    isAdmin = from.IsAdmin
+                    isAdmin = from.IsAdmin,
+                    passwordHash = from.PasswordHash
                 };
         }
     }

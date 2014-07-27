@@ -14,23 +14,23 @@
         <elementListCompartment Id="ca9b79ca-288c-49ad-be44-3323075acc3f" absoluteBounds="0.765, 2.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="65f35e7e-d828-4553-a0bc-1d44e1fb0d7b" absoluteBounds="0.75, 5.5, 2, 1.9631982421875005">
-      <DataClassMoniker Name="/DataContextDataContext/tbAgent" />
-      <nestedChildShapes>
-        <elementListCompartment Id="b7788123-54b7-404a-bfb4-6c0698a3607b" absoluteBounds="0.765, 5.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.59699625651042); (3.5 : 2.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.59699625651042); (3.04166416666667 : 2.59699625651042 : JumpStart); (3.20833083333333 : 2.59699625651042 : JumpEnd); (3.5 : 2.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataContextDataContext/tbInsuranceType/tbInsuranceType_tbSale" />
       <nodes>
         <classShapeMoniker Id="f1da0a4a-65e5-40ea-b25f-e5da9ce3196c" />
         <classShapeMoniker Id="e9165c52-f1b0-4fea-9051-097110bf1947" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 6.48159912109375); (4.5 : 6.48159912109375); (4.5 : 4.1170068359375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="8f7c99a0-b2fc-48af-aa4e-436a2406dc3e" absoluteBounds="1.875, 5.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/DataContextDataContext/tbAgent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6405642b-1e0b-4b1c-87eb-9ac94e83a9f7" absoluteBounds="1.8900000000000001, 5.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.1249975 : 5.125); (3.1249975 : 1.46875); (3.5 : 1.46875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataContextDataContext/tbAgent/tbAgent_tbSale" />
       <nodes>
-        <classShapeMoniker Id="65f35e7e-d828-4553-a0bc-1d44e1fb0d7b" />
+        <classShapeMoniker Id="8f7c99a0-b2fc-48af-aa4e-436a2406dc3e" />
         <classShapeMoniker Id="e9165c52-f1b0-4fea-9051-097110bf1947" />
       </nodes>
     </associationConnector>

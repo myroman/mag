@@ -24,6 +24,15 @@ namespace Mag.Business.Domain
         [JsonProperty("isAdmin")]
         public bool? IsAdmin { get; set; }
 
+        [JsonIgnore]
+        public string Password { get; set; }
+
+        [JsonIgnore]
+        public string ConfirmPassword { get; set; }
+
+        [JsonIgnore]
+        public string PasswordHash { get; internal set; }
+
         [JsonProperty("fullName")]
         public string FullName
         {

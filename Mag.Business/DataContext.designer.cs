@@ -636,6 +636,8 @@ namespace Mag.Business
 		
 		private System.Nullable<bool> _isAdmin;
 		
+		private string _passwordHash;
+		
 		private EntitySet<tbSale> _tbSales;
 		
     #region Extensibility Method Definitions
@@ -654,6 +656,8 @@ namespace Mag.Business
     partial void OnregDateChanged();
     partial void OnisAdminChanging(System.Nullable<bool> value);
     partial void OnisAdminChanged();
+    partial void OnpasswordHashChanging(string value);
+    partial void OnpasswordHashChanged();
     #endregion
 		
 		public tbAgent()
@@ -722,7 +726,7 @@ namespace Mag.Business
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_surname", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_surname", DbType="VarChar(200)")]
 		public string surname
 		{
 			get
@@ -778,6 +782,26 @@ namespace Mag.Business
 					this._isAdmin = value;
 					this.SendPropertyChanged("isAdmin");
 					this.OnisAdminChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_passwordHash", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string passwordHash
+		{
+			get
+			{
+				return this._passwordHash;
+			}
+			set
+			{
+				if ((this._passwordHash != value))
+				{
+					this.OnpasswordHashChanging(value);
+					this.SendPropertyChanging();
+					this._passwordHash = value;
+					this.SendPropertyChanged("passwordHash");
+					this.OnpasswordHashChanged();
 				}
 			}
 		}
