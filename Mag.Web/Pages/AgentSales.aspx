@@ -45,7 +45,7 @@
   
   <script type="text/html" id="sale-view-template">
     <td data-bind='text: id'></td>
-    <td data-bind='text: agent.name'></td>
+    <td data-bind='text: agent().name'></td>
     <td data-bind='text: reportCode'></td>
     <td data-bind='text: create'></td>
     <%--<td><%# GetSale(Container.DataItem).Insurance %></td>

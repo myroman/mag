@@ -1,7 +1,29 @@
 ﻿function SalesVm(model) {
   var it = this;
 
-  it.items = ko.observableArray(model.sales);
+  var saleItem = function(plainData) {
+    this.id = 0;
+    this.reportCode = ko.observable();
+    this.create = ko.observable();
+    this.agent = ko.observable();
+    this.update(plainData);
+  };
+  ko.utils.extend(saleItem.prototype, {
+    update: function(data) {
+      this.id = data.id;
+      this.reportCode(data.reportCode);
+      this.create(data.create);
+      this.agent({
+        id: data.agent.id,
+        name: data.agent.name
+      });
+    }
+  });
+  
+  it.items = ko.observableArray(ko.utils.arrayMap(model.sales, function(data) {
+    return new saleItem(data);
+  }));
+  
   it.editedSaleData = {
     agent: {
     },
@@ -13,24 +35,18 @@
     create: ko.observable('')
   };
   
-  it.editedAgent = ko.observable({
-    id: 0,
-    name: ''
-  });
+  it.editedAgent = ko.observable();
   
   function clearSale(x) {
-    x.reportCode('');
-    x.create('');
+    x.reportCode(null);
+    x.create(null);
   }
 
   clearSale(it.editedSaleData);
 
   it.saveNewItem = function () {
     var copy = ko.toJS(it.editedSaleData);
-    copy.agent = {
-      id: it.editedAgent().id,
-      name: it.editedAgent().name
-    };
+    copy.agent = ko.toJS(it.editedAgent);
 
     $.ajax('/ApiHandler.axd', {
       data: {
@@ -40,11 +56,11 @@
       },
       type: 'POST',
       dataType: 'json',
-      success: function(resp) {
-        it.items.push(resp);
+      success: function (resp) {
+        it.items.push(new saleItem(resp));
+
         clearSale(it.editedSaleData);
-        it.editedAgent().id = 0;
-        it.editedAgent().name = 0;
+        it.editedAgent(null);
       }
     });
   };
