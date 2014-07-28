@@ -39,7 +39,7 @@
         <div class="form-group">
           <div class="col-lg-10">
             <asp:Button UseSubmitBehavior="True" CssClass="btn btn-primary" runat="server" ID="btnSubmit" Text="Войти" />
-            <asp:Button CssClass="btn btn-warning" runat="server" ID="btnRedirectToRegister" Text="Хочу зарегистрироваться" />
+            <asp:Button CssClass="btn btn-warning" runat="server" ID="btnRedirectToRegister" Text="Зарегистрироваться" />
           </div>
         </div>
       </fieldset>

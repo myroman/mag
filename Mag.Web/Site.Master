@@ -4,7 +4,7 @@
 <html lang="en">
 <head runat="server">
   <title><%: Page.Title %> - My ASP.NET Application</title>
-  <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" />
+  <link rel="stylesheet" href="<%= ResolveClientUrl("~/Content/Site.css") %>"/>
 </head>
 <body>
   <div class="navbar navbar-default">

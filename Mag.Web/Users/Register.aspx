@@ -1,35 +1,63 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Mag.Web.Users.Register" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="Mag.Web.Users.Register" %>
 
-<!DOCTYPE html>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+  <div class="jumbotron cf">
+    <asp:PlaceHolder runat="server" ID="plhError">
+      <div class="alert alert-dismissable alert-danger">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <asp:Label runat="server" ID="lblErrorMessage" />
+      </div>
+    </asp:PlaceHolder>
+    
+    <form id="Form2" runat="server" class="form-horizontal col-lg-6">
+      <fieldset>
+        <legend>Вход</legend>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" />
-</head>
-<body>
-    <form id="form1" runat="server">
-      <asp:Label runat="server" ID="lblError" />
+        <div class='form-group'>
+          <asp:Label ID="Label1" runat="server" CssClass="col-lg-4 control-label" AssociatedControlID="txtUserName">
+          Имя пользователя
+          </asp:Label>
+          <div class="col-lg-7">
+            <asp:TextBox runat="server" ID="txtUserName" CssClass="form-control" placeholder='Имя пользователя' />
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUserName"
+              CssClass="field-validation-error" ErrorMessage="Введите имя агента." />
+          </div>
+        </div>
 
-      <asp:Panel runat="server">
-        <label for="<%# txtUserName.ClientID %>">Юзер</label>
-        <asp:TextBox runat="server" ID="txtUserName" />
-        <br />
-        <label for="<%# txtPassword.ClientID %>">Пароль</label>
-        <asp:TextBox runat="server" ID="txtPassword" TextMode="Password"/>
-        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPassword"
-        CssClass="field-validation-error" ErrorMessage="The password field is required." />
-        <br />
-        <label for="<%# txtConfirmPassword.ClientID %>">Подтвердите пароль</label>
-        <asp:TextBox runat="server" ID="txtConfirmPassword" TextMode="Password"/>
-        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtConfirmPassword"
-      CssClass="field-validation-error" Display="Dynamic" 
-      ErrorMessage="The confirm password field is required." />
-      <asp:CompareValidator runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword"
+        <div class='form-group'>
+          <asp:Label runat="server" AssociatedControlID="txtPassword" CssClass="col-lg-4 control-label">
+            Пароль
+          </asp:Label>
+          <div class='col-lg-7'>
+            <asp:TextBox runat="server" CssClass="form-control" placeholder='Пароль' ID="txtPassword"
+              TextMode="Password" />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPassword"
+              CssClass="field-validation-error" ErrorMessage="Введите пароль." />
+            <asp:CompareValidator runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword"
       CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
-        <br />
-        <asp:Button runat="server" ID="btnRegister" Text="Зарегистрироваться"/>
-      </asp:Panel>  
+          </div>
+        </div>
+        
+        <div class='form-group'>
+          <asp:Label runat="server" AssociatedControlID="txtPassword" CssClass="col-lg-4 control-label">
+            Подтвердите пароль
+          </asp:Label>
+          <div class='col-lg-7'>
+            <asp:TextBox runat="server" CssClass="form-control" placeholder='Пароль' ID="txtConfirmPassword"
+              TextMode="Password" />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtConfirmPassword"
+              CssClass="field-validation-error" ErrorMessage="Введите пароль." />
+            <asp:CompareValidator runat="server" ControlToCompare="txtPassword" ControlToValidate="txtConfirmPassword"
+              CssClass="field-validation-error" Display="Dynamic" ErrorMessage="Введенные пароли не совпадают." />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-10">
+            <asp:Button CssClass="btn btn-primary" runat="server" ID="btnRegister" Text="Хочу зарегистрироваться" />
+          </div>
+        </div>
+      </fieldset>
     </form>
-</body>
-</html>
+  </div>
+</asp:Content>

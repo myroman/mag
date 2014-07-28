@@ -1,4 +1,9 @@
-﻿.cf:after {
+﻿@import url(bootstrap.min.css);
+@import url(blocks/b-sales.css);
+@import url(blocks/b-table.css);
+@import url(blocks/b-options.css);
+
+.cf:after {
   content: " "; /* Older browser do not support empty content */
   visibility: hidden;
   display: block;

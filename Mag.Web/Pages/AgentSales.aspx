@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
   <title>Мои продажи</title>
-  <webopt:BundleReference runat="server" Path="~/Content/css" />
-  <webopt:BundleReference runat="server" Path="~/bundles/css/jquery-ui" />
+  <link rel="stylesheet" href="<%= ResolveClientUrl("~/Content/Site.css") %>"/>
+  <link rel="stylesheet" href="<%= ResolveClientUrl("~/content/jquery-ui/jquery-ui.css") %>"/>
 </head>
 <body>
   <form id="form1" runat="server">

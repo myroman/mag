@@ -20,6 +20,11 @@ namespace Mag.Web.Users
             base.OnLoad(e);
             userService = Context.GetContainer().Resolve<IUserService>();
             btnRegister.Click += BtnRegisterOnClick;
+
+            if (!IsPostBack)
+            {
+                plhError.Visible = false;
+            }
         }
 
         private void BtnRegisterOnClick(object sender, EventArgs eventArgs)
@@ -40,7 +45,8 @@ namespace Mag.Web.Users
             }
             catch (DomainException exc)
             {
-                lblError.Text = exc.Message;
+                plhError.Visible = true;
+                lblErrorMessage.Text = exc.Message;
             }
         }
     }
