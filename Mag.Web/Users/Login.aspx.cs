@@ -19,8 +19,18 @@ namespace Mag.Web.Users
         {
             base.OnLoad(e);
             userService = Context.GetContainer().Resolve<IUserService>();
-
             btnSubmit.Click += BtnSubmitOnClick;
+            btnRedirectToRegister.Click += BtnRedirectToRegisterOnClick;
+                
+            if (!IsPostBack)
+            {
+                plhError.Visible = false;
+            }
+        }
+
+        private void BtnRedirectToRegisterOnClick(object sender, EventArgs eventArgs)
+        {
+            Response.Redirect("~/Users/Register.aspx");
         }
 
         private void BtnSubmitOnClick(object sender, EventArgs eventArgs)
@@ -39,7 +49,8 @@ namespace Mag.Web.Users
             }
             catch (DomainException exc)
             {
-                lblError.Text = exc.Message;
+                plhError.Visible = true;
+                lblErrorMessage.Text = exc.Message;
             }
         }
     }

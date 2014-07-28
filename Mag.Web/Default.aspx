@@ -1,31 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Mag.Web.Default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Mag.Web.Default" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Главная</title>
-    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/css" />
-</head>
-<body>
-    <form id="form1" runat="server">
-      <div class="header">
-        <asp:Panel runat="server" ID="pnlUser" />
-      </div>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+  <div class="jumbotron">
+    <h1>Выбор действий</h1>
+    <p>Привет! Что мы хотим сделать?</p>
+    <p>
       <div class='b-options'>
-        <a href="/Users/Register.aspx">
-          Зарегистрироваться
-        </a>
-        <a href="/Users/Login.aspx">
-          Войти
-        </a>
-        <a href="/Handlers/Logout.ashx">
-          Выйти
-        </a>
-        <a href='/Pages/AgentSales.aspx'>
-          Мои продажи
-        </a>
+        <a href="/Users/Register.aspx" class="btn btn-primary btn-lg">Зарегистрироваться</a>
+        <a href="/Users/Login.aspx" class="btn btn-primary btn-lg">Войти</a>
+        <a href="/Handlers/Logout.ashx" class="btn btn-primary btn-lg">Выйти</a>
+        <a href='/Pages/AgentSales.aspx' class="btn btn-primary btn-lg">Мои продажи</a>
       </div>
-    </form>
-</body>
-</html>
+    </p>
+  </div>
+</asp:Content>

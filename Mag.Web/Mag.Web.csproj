@@ -139,6 +139,8 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\blocks\b-table.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui\external\jquery\jquery.js" />
     <Content Include="Content\jquery-ui\images\animated-overlay.gif" />
     <Content Include="Content\jquery-ui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />

@@ -72,7 +72,7 @@
   </script>
   
   <asp:PlaceHolder runat="server">
-    <%= Scripts.Render("~/bundles/js/sales") %>
+    <%= Scripts.Render("~/bundles/js/all") %>
   </asp:PlaceHolder>
 </body>
 </html>

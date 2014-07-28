@@ -6,7 +6,7 @@ namespace Mag.Web.App_Start
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/js/sales").Include(
+            bundles.Add(new ScriptBundle("~/bundles/js/all").Include(
                 "~/scripts/jquery-2.1.1.js",
                 "~/scripts/jquery-ui.js",
                 "~/scripts/knockout-3.1.0.js",

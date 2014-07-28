@@ -69,7 +69,7 @@
 }
 
 $(function() {
-  if ($('.b-sales').length >= 0) {
+  if ($('.b-sales').length > 0) {
     
     ko.bindingHandlers.datepicker = {
       init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
