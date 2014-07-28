@@ -10,3 +10,7 @@
   height: 0;
   clear: both;
 }
+
+.valid-wrapper {
+  padding-top: 10px;
+}

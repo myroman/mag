@@ -20,26 +20,22 @@ namespace Mag.Web.Users
             base.OnLoad(e);
             userService = Context.GetContainer().Resolve<IUserService>();
             btnSubmit.Click += BtnSubmitOnClick;
-            btnRedirectToRegister.Click += BtnRedirectToRegisterOnClick;
-                
+
             if (!IsPostBack)
             {
                 plhError.Visible = false;
             }
-        }
 
-        private void BtnRedirectToRegisterOnClick(object sender, EventArgs eventArgs)
-        {
-            Response.Redirect("~/Users/Register.aspx");
+            DataBind();
         }
 
         private void BtnSubmitOnClick(object sender, EventArgs eventArgs)
         {
             var user = new Agent
-                {
-                    Name = txtUserName.Text,
-                    Password = txtPassword.Text
-                };
+            {
+                Name = txtUserName.Text,
+                Password = txtPassword.Text
+            };
             try
             {
                 userService.Login(user);
@@ -52,6 +48,21 @@ namespace Mag.Web.Users
                 plhError.Visible = true;
                 lblErrorMessage.Text = exc.Message;
             }
+        }
+
+        protected string LabelCssClass
+        {
+            get { return "col-lg-3 control-label"; }
+        }
+
+        protected string InputWrapperCssClass
+        {
+            get { return "col-lg-5"; }
+        }
+
+        protected string ValidInputCssClass
+        {
+            get { return "col-lg-4 valid-wrapper"; }
         }
     }
 }
