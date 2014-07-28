@@ -9,6 +9,7 @@ using Autofac;
 
 using Mag.Business.Abstract;
 using Mag.Web.AutofacSupport;
+using Mag.Web.Business;
 
 namespace Mag.Web
 {
@@ -18,24 +19,19 @@ namespace Mag.Web
 
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
 
-        private string _antiXsrfTokenValue;
+        private string antiXsrfTokenValue;
 
-        private IUserService userService;
+        private IUserServiceFacade userServiceFacade;
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            userService = Context.GetContainer().Resolve<IUserService>();
+            userServiceFacade = Context.GetContainer().Resolve<IUserServiceFacade>();
 
-            var hashCookie = Context.Request.Cookies["hash"];
-            if (hashCookie != null)
+            if (!userServiceFacade.IsAuthenticated(Context))
             {
-                var currentUser = userService.GetCurrentUserByHash(hashCookie.Value);
-                if (currentUser != null)
-                {
-                    CreateForCurrentUser();
-                    return;
-                }
+                CreateForCurrentUser();
+                return;
             }
             CreateIfNoCurrentUser();
         }
@@ -82,19 +78,19 @@ namespace Mag.Web
             if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
             {
                 // Use the Anti-XSRF token from the cookie
-                _antiXsrfTokenValue = requestCookie.Value;
-                Page.ViewStateUserKey = _antiXsrfTokenValue;
+                antiXsrfTokenValue = requestCookie.Value;
+                Page.ViewStateUserKey = antiXsrfTokenValue;
             }
             else
             {
                 // Generate a new Anti-XSRF token and save to the cookie
-                _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
-                Page.ViewStateUserKey = _antiXsrfTokenValue;
+                antiXsrfTokenValue = Guid.NewGuid().ToString("N");
+                Page.ViewStateUserKey = antiXsrfTokenValue;
 
                 var responseCookie = new HttpCookie(AntiXsrfTokenKey)
                     {
                         HttpOnly = true,
-                        Value = _antiXsrfTokenValue
+                        Value = antiXsrfTokenValue
                     };
                 if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
                 {
@@ -117,7 +113,7 @@ namespace Mag.Web
             else
             {
                 // Validate the Anti-XSRF token
-                if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
+                if ((string)ViewState[AntiXsrfTokenKey] != antiXsrfTokenValue
                     || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
                 {
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");

@@ -5,6 +5,7 @@ using Autofac;
 using Mag.Business.Abstract;
 using Mag.Business.Domain;
 using Mag.Web.AutofacSupport;
+using Mag.Web.Business;
 
 using Newtonsoft.Json;
 
@@ -16,6 +17,8 @@ namespace Mag.Web.Pages
 
         private ISalesRepository salesRepository;
 
+        private IUserServiceFacade userServiceFacade;
+
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
@@ -24,7 +27,7 @@ namespace Mag.Web.Pages
 
             salesRepository = container.Resolve<ISalesRepository>();
             agentsRepository = container.Resolve<IAgentsRepository>();
-            
+            userServiceFacade = container.Resolve<IUserServiceFacade>();
         }
 
         protected string JsonModel
@@ -43,6 +46,11 @@ namespace Mag.Web.Pages
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            if (!userServiceFacade.IsAuthenticated(Context))
+            {
+                Response.Redirect("~/");
+                return;
+            }
             DataBind();
         }
 

@@ -246,6 +246,9 @@
     <Compile Include="AutofacSupport\CompositionRoot.cs" />
     <Compile Include="AutofacSupport\CompositionRootBuilder.cs" />
     <Compile Include="AutofacSupport\ContainerInContextHelper.cs" />
+    <Compile Include="Business\IUserServiceFacade.cs" />
+    <Compile Include="Business\UserServiceFacade.cs" />
+    <Compile Include="Business\WebBusinessRegistrationModule.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
