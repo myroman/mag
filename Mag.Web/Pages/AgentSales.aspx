@@ -1,48 +1,50 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AgentSales.aspx.cs" Inherits="Mag.Web.Pages.AgentSales" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgentSales.aspx.cs" Inherits="Mag.Web.Pages.AgentSales" %>
 
-<!DOCTYPE html>
+<asp:Content runat="server" ContentPlaceHolderID="HeadContent">
+  <link rel="stylesheet" href="<%= ResolveClientUrl("~/Content/Site.css") %>" />
+  <link rel="stylesheet" href="<%= ResolveClientUrl("~/content/jquery-ui/jquery-ui.css") %>" />
+</asp:Content>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-  <title>Мои продажи</title>
-  <link rel="stylesheet" href="<%= ResolveClientUrl("~/Content/Site.css") %>"/>
-  <link rel="stylesheet" href="<%= ResolveClientUrl("~/content/jquery-ui/jquery-ui.css") %>"/>
-</head>
-<body>
+<asp:Content runat="server" ContentPlaceHolderID="MainContent">
+  <h2>Журнал продаж</h2>
   <form id="form1" runat="server">
-    <div class="b-sales" data-model='<%= JsonModel %>'>
-      <div class="b-sales__controls-panel">
-        <a href="javascript:void(0)" class="button b-sales" data-bind='click: saveNewItem'>Добавить</a>
+    <div class="col-lg-12 b-sales" data-model='<%= JsonModel %>'>
+      <div class="well well-sm b-sales__controls-panel">
+        <a href="javascript:void(0)" class="btn btn-success b-sales" data-bind='click: saveNewItem'>Добавить</a>
       </div>
-      <table class="b-table">
-        <thead>
-          <tr>
-            <th>№</th>
-            <th>Агент</th>
-            <th>Номер отчета</th>
-            <th>Дата</th>
-            <%--            <th>Вид страхования</th>
-            <th>Кол-во договоров, шт.</th>
-            <th>Начисленная премия, руб.</th>
-            <th>Кол-во оплат, шт.</th>
-            <th>Оплаченная премия, руб.</th>
-            <th>% вознаграждения</th>
-            <th>Сумма КВ, руб.</th>
-            <th>Примечание</th>
-            <th>% доп. вознагр.</th>
-            <th>Сумма доп. вознагр., руб</th>--%>
-          </tr>
-        </thead>
-        <tbody data-bind='foreach: items'>
-          <tr data-bind="template: {name: 'sale-view-template', data: $data }"></tr>
-        </tbody>
-        <tfoot>
-          <tr data-bind="template: { name: 'sale-template', data: editedSaleData }"></tr>
-        </tfoot>
-      </table>
+      <div id="table-wrapper">
+        <div class='table-scroll'>
+          <table class="table table-striped table-hover b-table">
+            <thead>
+              <tr>
+                <th title='Номер по порядку'>№</th>
+                <th title='ФИО Агента'>Агент</th>
+                <th title='Номер отчета'>Номер отчета</th>
+                <th title='Дата'>Дата</th>
+                <th title='Вид страхования'>Вид страхования</th>
+                <th title='Количество договоров, шт.'>Кол-во договоров</th>
+                <th title='Начисленная премия, руб.'>Премия</th>
+                <th title='Количество оплат, шт.'>Кол-во оплат</th>
+                <th title='Оплаченная премия, руб.'>Оплач. прем.</th>
+                <th title='Процент вознаграждения'>% вознагр.</th>
+                <th title='Сумма комиссионного вознаграждения, руб.'>Сумма КВ</th>
+                <th title='Примечание'>Прим.</th>
+                <th title='% дополнительного вознаграждения'>% доп. вознагр.</th>
+                <th title='Сумма дополнительного вознаграждения, руб.'>Сумма д.в., руб</th>
+              </tr>
+            </thead>
+            <tbody data-bind='foreach: items'>
+              <tr data-bind="template: { name: 'sale-view-template', data: $data }"></tr>
+            </tbody>
+            <tfoot>
+              <tr data-bind="template: { name: 'sale-template', data: editedSaleData }"></tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
     </div>
   </form>
-  
+
   <script type="text/html" id="sale-view-template">
     <td data-bind='text: id'></td>
     <td data-bind='text: agent().name'></td>
@@ -62,7 +64,7 @@
   <script type="text/html" id="sale-template">
     <td>...</td>
     <td>
-      <select data-bind="options: $root.agents, optionsText: 'name', value:$root.editedAgent, optionsCaption: 'Выберите...'"></select>
+      <select data-bind="options: $root.agents, optionsText: 'name', value: $root.editedAgent, optionsCaption: 'Выберите...'"></select>
     </td>
     <td>
       <input type="text" data-bind='value: reportCode' /></td>
@@ -70,9 +72,4 @@
       <input type="text" data-bind='datepicker: true, value: create' />
     </td>
   </script>
-  
-  <asp:PlaceHolder runat="server">
-    <%= Scripts.Render("~/bundles/js/all") %>
-  </asp:PlaceHolder>
-</body>
-</html>
+</asp:Content>

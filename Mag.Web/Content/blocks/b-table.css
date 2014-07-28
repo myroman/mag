@@ -1,3 +1,13 @@
 ﻿.b-table {
   
 }
+
+.table-scroll {
+  height:600px;
+  overflow:auto;  
+  margin-top:20px;
+}
+
+#table-wrapper table {
+  width: 100%;
+}

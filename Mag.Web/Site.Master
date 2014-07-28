@@ -4,7 +4,10 @@
 <html lang="en">
 <head runat="server">
   <title><%: Page.Title %> - My ASP.NET Application</title>
-  <link rel="stylesheet" href="<%= ResolveClientUrl("~/Content/Site.css") %>"/>
+  
+  <asp:ContentPlaceHolder runat="server" ID="HeadContent">
+    <link rel="stylesheet" href="<%= ResolveClientUrl("~/Content/Site.css") %>"/>
+  </asp:ContentPlaceHolder>
 </head>
 <body>
   <div class="navbar navbar-default">
@@ -26,12 +29,13 @@
   <div class='container'>
     <asp:ContentPlaceHolder runat="server" ID="MainContent" />
   </div>
-
+  
   <asp:PlaceHolder runat="server">
     <%= Scripts.Render("~/bundles/js/all") %>
   </asp:PlaceHolder>
-  <!-- Latest compiled and minified JavaScript -->
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+  <asp:ContentPlaceHolder runat="server" ID="BottomContent">
+    
+  </asp:ContentPlaceHolder>
 </body>
 </html>
