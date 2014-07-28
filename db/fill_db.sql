@@ -16,13 +16,11 @@ go
 create table tbAgents
 (
 [id] int identity(1, 1),
-[name] varchar(200) not null,
-[patronym] varchar(200),
-[surname] varchar(200),
-[regDate] datetime not null,
-[isAdmin] bit,
+[email] varchar(60) not null,
 [passwordHash] varchar(100) not null,
-
+[regDate] datetime not null,
+[fullName] varchar(400) not null,
+[isAdmin] bit,
 constraint PK_AgentId primary key([id])
 )
 
@@ -58,11 +56,11 @@ constraint PK_SaleInsuranceType foreign key(insuranceTypeId) references tbInsura
 )
 
 -- +++++++++ Filling tables with info ++++++++++++ --
-insert into tbAgents([name],[surname],[regdate],[isadmin],[passwordHash])
-values ('Roman', 'Smith', '2014/03/05', 1, '123456')
+insert into tbAgents([email],[fullName],[regdate],[isadmin],[passwordHash])
+values ('ivanadmin@mailinator.com','Иван Админов', '2014/03/05', 1, '123456')
 insert into tbAgents
-([name],[surname],[regdate],[isadmin], [passwordHash])
-values ('John', 'Richie', '2014/06/01', 0, '123456')
+([email],[fullName],[regdate],[isadmin], [passwordHash])
+values ('j0hn@mailinator.com', 'John Waterbridge', '2014/06/01', 0, '123456')
 
 insert into tbInsuranceTypes([name])
 values ('Type1')

@@ -10,7 +10,7 @@ namespace Mag.Business.Abstract
 
         Agent Read(int id);
 
-        Agent FindByLogin(string userName);
+        Agent FindByEmail(string email);
 
         void Add(Agent agent);
     }

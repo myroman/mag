@@ -16,12 +16,17 @@ namespace Mag.Web.Business
 
         public bool IsAuthenticated(HttpContext context)
         {
-            var hashCookie = context.Request.Cookies["hash"];
+            return GetCurrentUser() != null;
+        }
+
+        public Agent GetCurrentUser()
+        {
+            var hashCookie = HttpContext.Current.Request.Cookies["hash"];
             if (hashCookie == null)
             {
-                return false;
+                return null;
             }
-            return GetCurrentUserByHash(hashCookie) != null;
+            return GetCurrentUserByHash(hashCookie);
         }
 
         private Agent GetCurrentUserByHash(HttpCookie hashCookie)

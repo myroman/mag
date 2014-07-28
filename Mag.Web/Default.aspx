@@ -3,7 +3,7 @@
 <asp:Content runat="server" ContentPlaceHolderID="MainContent">
   <div class="jumbotron">
     <h1>Выбор действий</h1>
-    <p>Привет! Что мы хотим сделать?</p>
+    <p>Привет<%= CurrentUser %>! Что будем делать?</p>
     <p>
       <div class='b-options'>
         <a href="/Users/Register.aspx" class="btn btn-primary btn-lg">Зарегистрироваться</a>

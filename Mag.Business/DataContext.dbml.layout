@@ -14,23 +14,23 @@
         <elementListCompartment Id="ca9b79ca-288c-49ad-be44-3323075acc3f" absoluteBounds="0.765, 2.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.59699625651042); (3.04166416666667 : 2.59699625651042 : JumpStart); (3.20833083333333 : 2.59699625651042 : JumpEnd); (3.5 : 2.59699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.71875 : 3.19399251302083); (1.71875 : 3.7588525390625); (3.5 : 3.7588525390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataContextDataContext/tbInsuranceType/tbInsuranceType_tbSale" />
       <nodes>
         <classShapeMoniker Id="f1da0a4a-65e5-40ea-b25f-e5da9ce3196c" />
         <classShapeMoniker Id="e9165c52-f1b0-4fea-9051-097110bf1947" />
       </nodes>
     </associationConnector>
-    <classShape Id="8f7c99a0-b2fc-48af-aa4e-436a2406dc3e" absoluteBounds="1.875, 5.125, 2, 2.1554996744791666">
+    <classShape Id="6b34a875-5c74-41df-9bab-7c0b2ff82573" absoluteBounds="2.75, 1.375, 2, 1.9631982421875">
       <DataClassMoniker Name="/DataContextDataContext/tbAgent" />
       <nestedChildShapes>
-        <elementListCompartment Id="6405642b-1e0b-4b1c-87eb-9ac94e83a9f7" absoluteBounds="1.8900000000000001, 5.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a9b1a02b-271e-40cb-bef1-e3d3462c75f0" absoluteBounds="2.765, 1.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.1249975 : 5.125); (3.1249975 : 1.46875); (3.5 : 1.46875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.75 : 2.35659912109375); (5.75 : 2.35659912109375); (5.75 : 2.55850341796875); (5.5 : 2.55850341796875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataContextDataContext/tbAgent/tbAgent_tbSale" />
       <nodes>
-        <classShapeMoniker Id="8f7c99a0-b2fc-48af-aa4e-436a2406dc3e" />
+        <classShapeMoniker Id="6b34a875-5c74-41df-9bab-7c0b2ff82573" />
         <classShapeMoniker Id="e9165c52-f1b0-4fea-9051-097110bf1947" />
       </nodes>
     </associationConnector>

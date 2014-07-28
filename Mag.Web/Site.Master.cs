@@ -28,12 +28,14 @@ namespace Mag.Web
             base.OnLoad(e);
             userServiceFacade = Context.GetContainer().Resolve<IUserServiceFacade>();
 
-            if (!userServiceFacade.IsAuthenticated(Context))
+            if (userServiceFacade.IsAuthenticated(Context))
             {
                 CreateForCurrentUser();
-                return;
             }
-            CreateIfNoCurrentUser();
+            else
+            {
+                CreateIfNoCurrentUser();
+            }
         }
 
         private void CreateForCurrentUser()

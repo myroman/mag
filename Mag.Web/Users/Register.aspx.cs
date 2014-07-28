@@ -33,7 +33,8 @@ namespace Mag.Web.Users
         {
             var newAgent = new Agent
                 {
-                    Name = txtUserName.Text,
+                    Email = txtEmail.Text,
+                    FullName = txtFullName.Text,
                     Password = txtPassword.Text
                 };
             try

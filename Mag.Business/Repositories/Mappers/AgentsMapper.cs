@@ -9,9 +9,8 @@ namespace Mag.Business.Repositories.Mappers
             return new Agent
                 {
                     Id = from.id,
-                    Name = from.name,
-                    Patronym = from.patronym,
-                    Surname = from.surname,
+                    Email = from.email,
+                    FullName = from.fullName,
                     RegistrationDate = from.regDate,
                     IsAdmin = from.isAdmin,
                     PasswordHash = from.passwordHash,
@@ -22,9 +21,8 @@ namespace Mag.Business.Repositories.Mappers
         {
             return new tbAgent
                 {
-                    name = from.Name,
-                    patronym = from.Patronym,
-                    surname = from.Surname,
+                    email = from.Email,
+                    fullName = from.FullName,
                     regDate = from.RegistrationDate,
                     isAdmin = from.IsAdmin,
                     passwordHash = from.PasswordHash

@@ -9,14 +9,11 @@ namespace Mag.Business.Domain
         [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonProperty("fullName")]
+        public string FullName { get; set; }
 
-        [JsonProperty("patronym")]
-        public string Patronym { get; set; }
-
-        [JsonProperty("surname")]
-        public string Surname { get; set; }
+        [JsonProperty("email")]
+        public string Email { get; set; }
 
         [JsonProperty("regDate")]
         public DateTime RegistrationDate { get; set; }
@@ -32,11 +29,5 @@ namespace Mag.Business.Domain
 
         [JsonIgnore]
         public string PasswordHash { get; internal set; }
-
-        [JsonProperty("fullName")]
-        public string FullName
-        {
-            get { return string.Format("{0} {1}", Name, Surname); }
-        }
     }
 }

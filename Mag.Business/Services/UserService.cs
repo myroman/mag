@@ -20,7 +20,7 @@ namespace Mag.Business.Services
 
         public void RegisterUser(Agent agent)
         {
-            if (agentsRepository.FindByLogin(agent.Name) != null)
+            if (agentsRepository.FindByEmail(agent.Email) != null)
             {
                 throw new DomainException("Такой пользователь уже зарегистрирован");
             }
@@ -33,7 +33,7 @@ namespace Mag.Business.Services
 
         public void Login(Agent agent)
         {
-            var foundAgent = agentsRepository.FindByLogin(agent.Name);
+            var foundAgent = agentsRepository.FindByEmail(agent.Email);
             if (foundAgent == null)
             {
                 throw new DomainException("Такого пользователя нет");

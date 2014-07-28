@@ -29,9 +29,9 @@ namespace Mag.Business.Repositories
             return null;
         }
 
-        public Agent FindByLogin(string userName)
+        public Agent FindByEmail(string email)
         {
-            return List().FirstOrDefault(agent => agent.Name.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            return List().FirstOrDefault(agent => agent.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
         }
 
         public void Add(Agent agent)
