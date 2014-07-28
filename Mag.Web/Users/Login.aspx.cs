@@ -62,7 +62,7 @@ namespace Mag.Web.Users
 
         protected string ValidInputCssClass
         {
-            get { return "col-lg-4 valid-wrapper"; }
+            get { return "col-lg-4 valid-wrapper has-error"; }
         }
     }
 }

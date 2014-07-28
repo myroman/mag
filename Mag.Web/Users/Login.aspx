@@ -12,8 +12,6 @@
       </asp:PlaceHolder>
 
       <fieldset>
-        <%--<legend>Вход</legend>--%>
-
         <div class='form-group'>
           <asp:Label runat="server" CssClass="<%# LabelCssClass %>" AssociatedControlID="txtUserName">
           Имя пользователя
@@ -23,8 +21,8 @@
               placeholder='Имя пользователя' />
           </div>
           <div class="<%# ValidInputCssClass %>">
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUserName"
-              CssClass="control-label has-error" ErrorMessage="Введите имя агента." />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtUserName"
+              CssClass="control-label" ErrorMessage="Введите имя агента." />
           </div>
         </div>
 
@@ -37,8 +35,8 @@
               TextMode="Password" />
           </div>
           <div class="<%# ValidInputCssClass %>">
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword"
-              CssClass="control-label has-error" ErrorMessage="Введите пароль." />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPassword"
+              CssClass="control-label" ErrorMessage="Введите пароль." />
           </div>
         </div>
 

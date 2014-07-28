@@ -25,6 +25,8 @@ namespace Mag.Web.Users
             {
                 plhError.Visible = false;
             }
+
+            DataBind();
         }
 
         private void BtnRegisterOnClick(object sender, EventArgs eventArgs)
@@ -48,6 +50,21 @@ namespace Mag.Web.Users
                 plhError.Visible = true;
                 lblErrorMessage.Text = exc.Message;
             }
+        }
+
+        protected string LabelCssClass
+        {
+            get { return "col-lg-3 control-label"; }
+        }
+
+        protected string InputWrapperCssClass
+        {
+            get { return "col-lg-5"; }
+        }
+
+        protected string ValidInputCssClass
+        {
+            get { return "col-lg-4 valid-wrapper has-error"; }
         }
     }
 }
