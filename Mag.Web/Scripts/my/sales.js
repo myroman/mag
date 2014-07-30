@@ -3,6 +3,7 @@
 
   var saleItem = function(plainData) {
     this.id = 0;
+    this.checked = ko.observable();
     this.reportCode = ko.observable();
     this.create = ko.observable();
     this.agent = ko.observable();
@@ -15,8 +16,9 @@
       this.create(data.create);
       this.agent({
         id: data.agent.id,
-        name: data.agent.name
+        fullName: data.agent.fullName
       });
+      this.checked(data.checked);
     }
   });
   
@@ -36,7 +38,8 @@
   };
   
   it.editedAgent = ko.observable();
-  
+  it.isAdminNow = model.isAdminNow;
+
   function clearSale(x) {
     x.reportCode(null);
     x.create(null);
@@ -66,6 +69,24 @@
   };
 
   it.agents = ko.observableArray(model.agents);
+
+  // Selecting
+  it.getSelected = function () {
+    var res = $.map(it.items(), function (x) {
+      return x.checked() ? x : null;
+    });
+    return res;
+  };
+
+  it.hasCheckedItems = ko.computed(function () {
+    return it.getSelected().length > 0;
+  });
+
+  it.getClassForDelete = ko.computed(function () {
+    return it.hasCheckedItems() ? '' : 'disabled';
+  });
+  
+
 }
 
 $(function() {

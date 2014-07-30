@@ -33,12 +33,12 @@ namespace Mag.Business
     partial void InserttbSale(tbSale instance);
     partial void UpdatetbSale(tbSale instance);
     partial void DeletetbSale(tbSale instance);
-    partial void InserttbInsuranceType(tbInsuranceType instance);
-    partial void UpdatetbInsuranceType(tbInsuranceType instance);
-    partial void DeletetbInsuranceType(tbInsuranceType instance);
     partial void InserttbAgent(tbAgent instance);
     partial void UpdatetbAgent(tbAgent instance);
     partial void DeletetbAgent(tbAgent instance);
+    partial void InserttbInsuranceType(tbInsuranceType instance);
+    partial void UpdatetbInsuranceType(tbInsuranceType instance);
+    partial void DeletetbInsuranceType(tbInsuranceType instance);
     #endregion
 		
 		public DataContextDataContext() : 
@@ -79,19 +79,19 @@ namespace Mag.Business
 			}
 		}
 		
-		public System.Data.Linq.Table<tbInsuranceType> tbInsuranceTypes
-		{
-			get
-			{
-				return this.GetTable<tbInsuranceType>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tbAgent> tbAgents
 		{
 			get
 			{
 				return this.GetTable<tbAgent>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbInsuranceType> tbInsuranceTypes
+		{
+			get
+			{
+				return this.GetTable<tbInsuranceType>();
 			}
 		}
 	}
@@ -126,9 +126,9 @@ namespace Mag.Business
 		
 		private System.Nullable<double> _addFeePercent;
 		
-		private EntityRef<tbInsuranceType> _tbInsuranceType;
-		
 		private EntityRef<tbAgent> _tbAgent;
+		
+		private EntityRef<tbInsuranceType> _tbInsuranceType;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -162,8 +162,8 @@ namespace Mag.Business
 		
 		public tbSale()
 		{
-			this._tbInsuranceType = default(EntityRef<tbInsuranceType>);
 			this._tbAgent = default(EntityRef<tbAgent>);
+			this._tbInsuranceType = default(EntityRef<tbInsuranceType>);
 			OnCreated();
 		}
 		
@@ -415,40 +415,6 @@ namespace Mag.Business
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbInsuranceType_tbSale", Storage="_tbInsuranceType", ThisKey="insuranceTypeId", OtherKey="id", IsForeignKey=true)]
-		public tbInsuranceType tbInsuranceType
-		{
-			get
-			{
-				return this._tbInsuranceType.Entity;
-			}
-			set
-			{
-				tbInsuranceType previousValue = this._tbInsuranceType.Entity;
-				if (((previousValue != value) 
-							|| (this._tbInsuranceType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbInsuranceType.Entity = null;
-						previousValue.tbSales.Remove(this);
-					}
-					this._tbInsuranceType.Entity = value;
-					if ((value != null))
-					{
-						value.tbSales.Add(this);
-						this._insuranceTypeId = value.id;
-					}
-					else
-					{
-						this._insuranceTypeId = default(int);
-					}
-					this.SendPropertyChanged("tbInsuranceType");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbAgent_tbSale", Storage="_tbAgent", ThisKey="agentId", OtherKey="id", IsForeignKey=true)]
 		public tbAgent tbAgent
 		{
@@ -483,105 +449,37 @@ namespace Mag.Business
 			}
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbInsuranceTypes")]
-	public partial class tbInsuranceType : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _name;
-		
-		private EntitySet<tbSale> _tbSales;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnnameChanging(string value);
-    partial void OnnameChanged();
-    #endregion
-		
-		public tbInsuranceType()
-		{
-			this._tbSales = new EntitySet<tbSale>(new Action<tbSale>(this.attach_tbSales), new Action<tbSale>(this.detach_tbSales));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbInsuranceType_tbSale", Storage="_tbInsuranceType", ThisKey="insuranceTypeId", OtherKey="id", IsForeignKey=true)]
+		public tbInsuranceType tbInsuranceType
 		{
 			get
 			{
-				return this._id;
+				return this._tbInsuranceType.Entity;
 			}
 			set
 			{
-				if ((this._id != value))
+				tbInsuranceType previousValue = this._tbInsuranceType.Entity;
+				if (((previousValue != value) 
+							|| (this._tbInsuranceType.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnidChanging(value);
 					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
+					if ((previousValue != null))
+					{
+						this._tbInsuranceType.Entity = null;
+						previousValue.tbSales.Remove(this);
+					}
+					this._tbInsuranceType.Entity = value;
+					if ((value != null))
+					{
+						value.tbSales.Add(this);
+						this._insuranceTypeId = value.id;
+					}
+					else
+					{
+						this._insuranceTypeId = default(int);
+					}
+					this.SendPropertyChanged("tbInsuranceType");
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
-		public string name
-		{
-			get
-			{
-				return this._name;
-			}
-			set
-			{
-				if ((this._name != value))
-				{
-					this.OnnameChanging(value);
-					this.SendPropertyChanging();
-					this._name = value;
-					this.SendPropertyChanged("name");
-					this.OnnameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbInsuranceType_tbSale", Storage="_tbSales", ThisKey="id", OtherKey="insuranceTypeId")]
-		public EntitySet<tbSale> tbSales
-		{
-			get
-			{
-				return this._tbSales;
-			}
-			set
-			{
-				this._tbSales.Assign(value);
 			}
 		}
 		
@@ -603,18 +501,6 @@ namespace Mag.Business
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_tbSales(tbSale entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbInsuranceType = this;
-		}
-		
-		private void detach_tbSales(tbSale entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbInsuranceType = null;
 		}
 	}
 	
@@ -825,6 +711,120 @@ namespace Mag.Business
 		{
 			this.SendPropertyChanging();
 			entity.tbAgent = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbInsuranceTypes")]
+	public partial class tbInsuranceType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _name;
+		
+		private EntitySet<tbSale> _tbSales;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnameChanging(string value);
+    partial void OnnameChanged();
+    #endregion
+		
+		public tbInsuranceType()
+		{
+			this._tbSales = new EntitySet<tbSale>(new Action<tbSale>(this.attach_tbSales), new Action<tbSale>(this.detach_tbSales));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_name", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string name
+		{
+			get
+			{
+				return this._name;
+			}
+			set
+			{
+				if ((this._name != value))
+				{
+					this.OnnameChanging(value);
+					this.SendPropertyChanging();
+					this._name = value;
+					this.SendPropertyChanged("name");
+					this.OnnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbInsuranceType_tbSale", Storage="_tbSales", ThisKey="id", OtherKey="insuranceTypeId")]
+		public EntitySet<tbSale> tbSales
+		{
+			get
+			{
+				return this._tbSales;
+			}
+			set
+			{
+				this._tbSales.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tbSales(tbSale entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbInsuranceType = this;
+		}
+		
+		private void detach_tbSales(tbSale entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbInsuranceType = null;
 		}
 	}
 }

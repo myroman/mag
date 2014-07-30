@@ -11,6 +11,9 @@
     <div class="col-lg-12 b-sales" data-model='<%= JsonModel %>'>
       <div class="well well-sm b-sales__controls-panel">
         <a href="javascript:void(0)" class="btn btn-success b-sales" data-bind='click: saveNewItem'>Добавить</a>
+        <asp:PlaceHolder runat="server" Visible="<%# IsAdminNow %>">
+          <a href="javascript:void(0)" class='btn btn-warning' data-bind='css: getClassForDelete'>Удалить выделенные</a>
+        </asp:PlaceHolder>
       </div>
       <div id="table-wrapper">
         <div class='table-scroll'>
@@ -34,7 +37,7 @@
               </tr>
             </thead>
             <tbody data-bind='foreach: items'>
-              <tr data-bind="template: { name: 'sale-view-template', data: $data }"></tr>
+              <tr data-bind="template: { name: 'sale-view-template', data: $data }, css: {danger: checked}"></tr>
             </tbody>
             <tfoot>
               <tr data-bind="template: { name: 'sale-template', data: editedSaleData }"></tr>
@@ -46,8 +49,11 @@
   </form>
 
   <script type="text/html" id="sale-view-template">
+    <td data-bind='visible: $root.isAdminNow'>
+      <input type="checkbox" data-bind='checked: checked'/>
+    </td>
     <td data-bind='text: id'></td>
-    <td data-bind='text: agent().name'></td>
+    <td data-bind='text: agent().fullName'></td>
     <td data-bind='text: reportCode'></td>
     <td data-bind='text: create'></td>
     <%--<td><%# GetSale(Container.DataItem).Insurance %></td>
@@ -64,7 +70,7 @@
   <script type="text/html" id="sale-template">
     <td>...</td>
     <td>
-      <select data-bind="options: $root.agents, optionsText: 'name', value: $root.editedAgent, optionsCaption: 'Выберите...'"></select>
+      <select data-bind="options: $root.agents, optionsText: 'fullName', value: $root.editedAgent, optionsCaption: 'Выберите...'"></select>
     </td>
     <td>
       <input type="text" data-bind='value: reportCode' /></td>

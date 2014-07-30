@@ -14,15 +14,8 @@
       <Column Name="feePercent" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="comment" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
       <Column Name="addFeePercent" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="tbInsuranceType_tbSale" Member="tbInsuranceType" ThisKey="insuranceTypeId" OtherKey="id" Type="tbInsuranceType" IsForeignKey="true" />
       <Association Name="tbAgent_tbSale" Member="tbAgent" ThisKey="agentId" OtherKey="id" Type="tbAgent" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbInsuranceTypes" Member="tbInsuranceTypes">
-    <Type Name="tbInsuranceType">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Association Name="tbInsuranceType_tbSale" Member="tbSales" ThisKey="id" OtherKey="insuranceTypeId" Type="tbSale" />
+      <Association Name="tbInsuranceType_tbSale" Member="tbInsuranceType" ThisKey="insuranceTypeId" OtherKey="id" Type="tbInsuranceType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbAgents" Member="tbAgents">
@@ -34,6 +27,13 @@
       <Column Name="fullName" Type="System.String" DbType="VarChar(400) NOT NULL" CanBeNull="false" />
       <Column Name="isAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="tbAgent_tbSale" Member="tbSales" ThisKey="id" OtherKey="agentId" Type="tbSale" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbInsuranceTypes" Member="tbInsuranceTypes">
+    <Type Name="tbInsuranceType">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Association Name="tbInsuranceType_tbSale" Member="tbSales" ThisKey="id" OtherKey="insuranceTypeId" Type="tbSale" />
     </Type>
   </Table>
 </Database>

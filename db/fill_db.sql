@@ -57,10 +57,10 @@ constraint PK_SaleInsuranceType foreign key(insuranceTypeId) references tbInsura
 
 -- +++++++++ Filling tables with info ++++++++++++ --
 insert into tbAgents([email],[fullName],[regdate],[isadmin],[passwordHash])
-values ('ivanadmin@mailinator.com','Иван Админов', '2014/03/05', 1, '123456')
+values ('ivanadmin@mailinator.com','Иван Админов', '2014/03/05', 1, '252175117180066074216133137173132242061108114103')--123456
 insert into tbAgents
 ([email],[fullName],[regdate],[isadmin], [passwordHash])
-values ('j0hn@mailinator.com', 'John Waterbridge', '2014/06/01', 0, '123456')
+values ('j0hn@mailinator.com', 'John Waterbridge', '2014/06/01', 0, '252175117180066074216133137173132242061108114103')
 
 insert into tbInsuranceTypes([name])
 values ('Type1')
