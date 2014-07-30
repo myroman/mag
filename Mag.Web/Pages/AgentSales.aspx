@@ -12,7 +12,7 @@
       <div class="well well-sm b-sales__controls-panel">
         <a href="javascript:void(0)" class="btn btn-success b-sales" data-bind='click: saveNewItem'>Добавить</a>
         <asp:PlaceHolder runat="server" Visible="<%# IsAdminNow %>">
-          <a href="javascript:void(0)" class='btn btn-warning' data-bind='css: getClassForDelete'>Удалить выделенные</a>
+          <a href="javascript:void(0)" class='btn btn-warning' data-bind='css: getClassForDelete, click: deleteSelected'>Удалить выделенные</a>
         </asp:PlaceHolder>
       </div>
       <div id="table-wrapper">
@@ -20,6 +20,7 @@
           <table class="table table-striped table-hover b-table">
             <thead>
               <tr>
+                <th data-bind='visible: isAdminNow'></th>
                 <th title='Номер по порядку'>№</th>
                 <th title='ФИО Агента'>Агент</th>
                 <th title='Номер отчета'>Номер отчета</th>
@@ -68,6 +69,7 @@
       <td><%# GetSale(Container.DataItem).AddFee %></td>--%>
   </script>
   <script type="text/html" id="sale-template">
+    <td data-bind='visible: $root.isAdminNow'></td>
     <td>...</td>
     <td>
       <select data-bind="options: $root.agents, optionsText: 'fullName', value: $root.editedAgent, optionsCaption: 'Выберите...'"></select>

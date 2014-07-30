@@ -22,6 +22,6 @@ namespace Mag.Business.Repositories
 
             IDbConnection connection = new SqlConnection(connectionString);
             DataContext = new DataContextDataContext(connection);
-        } 
+        }
     }
 }

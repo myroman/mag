@@ -9,5 +9,7 @@ namespace Mag.Business.Abstract
         IEnumerable<Sale> ReadSales();
 
         Sale Add(Sale sale);
+
+        void Remove(IEnumerable<int> ids);
     }
 }

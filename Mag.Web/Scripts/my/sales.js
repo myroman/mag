@@ -1,4 +1,5 @@
 ﻿function SalesVm(model) {
+  console.log(model);
   var it = this;
 
   var saleItem = function(plainData) {
@@ -34,8 +35,10 @@
       name: 'каско'
     },
     reportCode: ko.observable(''),
-    create: ko.observable('')
+    create: ko.observable(''),
+    checked: false
   };
+  
   
   it.editedAgent = ko.observable();
   it.isAdminNow = model.isAdminNow;
@@ -85,7 +88,25 @@
   it.getClassForDelete = ko.computed(function () {
     return it.hasCheckedItems() ? '' : 'disabled';
   });
-  
+  it.deleteSelected = function () {
+    var ids = $.map(it.getSelected(), function(x) { return x.id; });
+    $.ajax('/ApiHandler.axd', {
+      data: {
+        entity: 'sale',
+        action: 'delete',
+        ids: ko.toJSON(ids)
+      },
+      type: 'POST',
+      dataType: 'json',
+      success: function (resp) {
+        $.each(resp, function(i, val) {
+          it.items.remove(function(x) {
+             return x.id == val;
+          });
+        });
+      }
+    });
+  };
 
 }
 

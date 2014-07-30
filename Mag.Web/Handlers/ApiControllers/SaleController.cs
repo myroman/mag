@@ -25,6 +25,9 @@ namespace Mag.Web.Handlers.ApiControllers
                 case "add":
                     AddSale();
                     break;
+                case "delete":
+                    Delete();
+                    break;
             }
         }
 
@@ -35,6 +38,14 @@ namespace Mag.Web.Handlers.ApiControllers
             var newSale = JsonConvert.DeserializeObject<Sale>(@object);
             var updated = salesRepository.Add(newSale);
             WriteObjectAndFinish(updated);
+        }
+
+        private void Delete()
+        {
+            var idsRaw = Context.Request["ids"];
+            var ids = JsonConvert.DeserializeObject<int[]>(idsRaw);
+            salesRepository.Remove(ids);
+            WriteObjectAndFinish(ids);
         }
     }
 }
