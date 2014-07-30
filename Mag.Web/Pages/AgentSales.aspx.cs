@@ -17,6 +17,8 @@ namespace Mag.Web.Pages
 
         private ISalesRepository salesRepository;
 
+        private IInsuranceTypesRepository insuranceTypesRepository;
+
         private IUserServiceFacade userServiceFacade;
 
         private Agent currentAgent;
@@ -35,8 +37,9 @@ namespace Mag.Web.Pages
             salesRepository = container.Resolve<ISalesRepository>();
             agentsRepository = container.Resolve<IAgentsRepository>();
             userServiceFacade = container.Resolve<IUserServiceFacade>();
-            currentAgent = userServiceFacade.GetCurrentUser();
+            insuranceTypesRepository = container.Resolve<IInsuranceTypesRepository>();
         }
+
 
         protected string JsonModel
         {
@@ -46,7 +49,8 @@ namespace Mag.Web.Pages
                     {
                         sales = salesRepository.ReadSales(),
                         agents = agentsRepository.List(),
-                        isAdminNow = IsAdminNow
+                        isAdminNow = IsAdminNow,
+                        insuranceTypes = insuranceTypesRepository.List()
                     };
                 return JsonConvert.SerializeObject(model, Formatting.Indented);
             }
@@ -55,6 +59,8 @@ namespace Mag.Web.Pages
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            currentAgent = userServiceFacade.GetCurrentUser();
+
             if (!userServiceFacade.IsAuthenticated(Context))
             {
                 Response.Redirect("~/");

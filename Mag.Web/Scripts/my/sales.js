@@ -8,6 +8,17 @@
     this.reportCode = ko.observable();
     this.create = ko.observable();
     this.agent = ko.observable();
+    this.insurance = ko.observable();
+    this.contractsNumber = ko.observable();
+    this.premium = ko.observable();
+    this.paymentsNumber = ko.observable();
+    this.paidSum = ko.observable();
+    this.feePc = ko.observable();
+    this.fee = ko.observable();
+    this.comment = ko.observable();
+    this.addFeePc = ko.observable();
+    this.addFee = ko.observable();
+
     this.update(plainData);
   };
   ko.utils.extend(saleItem.prototype, {
@@ -19,6 +30,19 @@
         id: data.agent.id,
         fullName: data.agent.fullName
       });
+      this.insurance({
+        id: data.insurance.id,
+        name: data.insurance.name
+      });
+      this.contractsNumber(data.contractsNumber);
+      this.premium(data.premium);
+      this.paymentsNumber(data.paymentsNumber);
+      this.paidSum(data.paidSum);
+      this.feePc(data.feePc);
+      this.fee(data.fee);
+      this.comment(data.comment);
+      this.addFeePc(data.addFeePc);
+      this.addFee(data.addFee);
       this.checked(data.checked);
     }
   });
@@ -26,21 +50,30 @@
   it.items = ko.observableArray(ko.utils.arrayMap(model.sales, function(data) {
     return new saleItem(data);
   }));
-  
+
   it.editedSaleData = {
     agent: {
+      
     },
     insurance: {
-      id: 1,
-      name: 'каско'
+      
     },
     reportCode: ko.observable(''),
     create: ko.observable(''),
-    checked: false
+    checked: false,
+    contractsNumber: ko.observable(),
+    premium: ko.observable(),
+    paymentsNumber: ko.observable(),
+    paidSum: ko.observable(),
+    feePc: ko.observable(),
+    fee: ko.observable(),
+    comment: ko.observable(),
+    addFeePc: ko.observable(),
+    addFee: ko.observable(),
   };
   
-  
   it.editedAgent = ko.observable();
+  it.editedInsurance = ko.observable();
   it.isAdminNow = model.isAdminNow;
 
   function clearSale(x) {
@@ -53,6 +86,7 @@
   it.saveNewItem = function () {
     var copy = ko.toJS(it.editedSaleData);
     copy.agent = ko.toJS(it.editedAgent);
+    copy.insurance = ko.toJS(it.editedInsurance);
 
     $.ajax('/ApiHandler.axd', {
       data: {
@@ -67,11 +101,13 @@
 
         clearSale(it.editedSaleData);
         it.editedAgent(null);
+        it.editedInsurance(null);
       }
     });
   };
 
   it.agents = ko.observableArray(model.agents);
+  it.insuranceTypes = ko.observableArray(model.insuranceTypes);
 
   // Selecting
   it.getSelected = function () {

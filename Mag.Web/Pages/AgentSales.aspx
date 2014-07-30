@@ -57,16 +57,16 @@
     <td data-bind='text: agent().fullName'></td>
     <td data-bind='text: reportCode'></td>
     <td data-bind='text: create'></td>
-    <%--<td><%# GetSale(Container.DataItem).Insurance %></td>
-      <td><%# GetSale(Container.DataItem).ContractsNumber %></td>
-      <td><%# GetSale(Container.DataItem).Premium %></td>
-      <td><%# GetSale(Container.DataItem).PaymentsNumber %></td>
-      <td><%# GetSale(Container.DataItem).PaidSum %></td>
-      <td><%# GetSale(Container.DataItem).FeePercent %></td>
-      <td><%# GetSale(Container.DataItem).Fee %></td>
-      <td><%# GetSale(Container.DataItem).Comment %></td>
-      <td><%# GetSale(Container.DataItem).AddFeePercent %></td>
-      <td><%# GetSale(Container.DataItem).AddFee %></td>--%>
+    <td data-bind='text: insurance().name'></td>
+    <td data-bind='text: contractsNumber'></td>
+    <td data-bind='text: premium'></td>
+    <td data-bind='text: paymentsNumber'></td>
+    <td data-bind='text: paidSum'></td>
+    <td data-bind='text: feePc'></td>
+    <td data-bind='text: fee'></td>
+    <td data-bind='text: comment'></td>
+    <td data-bind='text: addFeePc'></td>
+    <td data-bind='text: addFee'></td>    
   </script>
   <script type="text/html" id="sale-template">
     <td data-bind='visible: $root.isAdminNow'></td>
@@ -78,6 +78,36 @@
       <input type="text" data-bind='value: reportCode' /></td>
     <td>
       <input type="text" data-bind='datepicker: true, value: create' />
+    </td>
+    <td>
+      <select data-bind="options: $root.insuranceTypes, optionsText: 'name', value: $root.editedInsurance, optionsCaption: 'Выберите...'"></select>
+    </td>
+    <td>
+      <input type="text" data-bind="value: contractsNumber"/>
+    </td>
+    <td>
+      <input type="text" data-bind="value: premium"/>
+    </td>
+    <td>
+      <input type="text" data-bind="value: paymentsNumber"/>
+    </td>
+    <td>
+      <input type="text" data-bind="value: paidSum"/>
+    </td>
+    <td>
+      <input type="text" data-bind="value: feePc"/>
+    </td>
+    <td>
+      <input type="text" data-bind="value: fee"/>
+    </td>
+    <td>
+      <input type="text" data-bind="value: comment"/>
+    </td>
+    <td>
+      <input type="text" data-bind="value: addFeePc"/>
+    </td>
+    <td>
+      <input type="text" data-bind="value: addFee"/>
     </td>
   </script>
 </asp:Content>
