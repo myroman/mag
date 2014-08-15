@@ -5,20 +5,20 @@ using System.Web.UI;
 using Autofac;
 
 using Mag.Business;
-using Mag.Business.Abstract;
 using Mag.Business.Domain;
 using Mag.Web.AutofacSupport;
+using Mag.Web.Business;
 
 namespace Mag.Web.Users
 {
     public partial class Login : Page
     {
-        private IUserService userService;
+        private IUserServiceFacade userServiceFacade;
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            userService = Context.GetContainer().Resolve<IUserService>();
+            userServiceFacade = Context.GetContainer().Resolve<IUserServiceFacade>();
             btnSubmit.Click += BtnSubmitOnClick;
 
             if (!IsPostBack)
@@ -38,9 +38,7 @@ namespace Mag.Web.Users
             };
             try
             {
-                userService.Login(user);
-
-                Response.AppendCookie(new HttpCookie("hash", user.PasswordHash));
+                userServiceFacade.LoginUser(user);
                 Response.Redirect("~/");
             }
             catch (DomainException exc)

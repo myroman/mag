@@ -7,6 +7,8 @@ namespace Mag.Web.Business
 {
     public class UserServiceFacade : IUserServiceFacade
     {
+        private const string UserCookieKey = "hash";
+
         protected readonly IUserService UserService;
 
         public UserServiceFacade(IUserService userService)
@@ -21,7 +23,7 @@ namespace Mag.Web.Business
 
         public Agent GetCurrentUser()
         {
-            var hashCookie = HttpContext.Current.Request.Cookies["hash"];
+            var hashCookie = HttpContext.Current.Request.Cookies[UserCookieKey];
             if (hashCookie == null)
             {
                 return null;
@@ -31,7 +33,31 @@ namespace Mag.Web.Business
 
         private Agent GetCurrentUserByHash(HttpCookie hashCookie)
         {
-            return UserService.GetCurrentUserByHash(hashCookie.Value);
+            var userInfoArr = hashCookie.Value.Split('|');
+            if (userInfoArr.Length != 2)
+            {
+                return null;
+            }
+            
+            return UserService.GetUserByEmailAndHash(userInfoArr[0], userInfoArr[1]);
+        }
+
+        public void RegisterUser(Agent newUser)
+        {
+            UserService.RegisterUser(newUser);
+            if (!string.IsNullOrEmpty(newUser.Email) && !string.IsNullOrEmpty(newUser.PasswordHash))
+            {
+                var cookieValue = newUser.Email + "|" + newUser.PasswordHash;
+                HttpContext.Current.Response.AppendCookie(new HttpCookie(UserCookieKey, cookieValue));
+            }
+        }
+
+        public void LoginUser(Agent user)
+        {
+            UserService.Login(user);
+            var cookieValue = user.Email + "|" + user.PasswordHash;
+
+            HttpContext.Current.Response.AppendCookie(new HttpCookie(UserCookieKey, cookieValue));
         }
     }
 }

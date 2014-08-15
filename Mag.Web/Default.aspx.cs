@@ -1,6 +1,5 @@
 ﻿using Autofac;
 
-using Mag.Business.Abstract;
 using Mag.Web.AutofacSupport;
 using Mag.Web.Business;
 

@@ -10,6 +10,6 @@ namespace Mag.Business.Abstract
 
         void Logout(Agent agent);
 
-        Agent GetCurrentUserByHash(string passwordHash);
+        Agent GetUserByEmailAndHash(string email, string passwordHash);
     }
 }

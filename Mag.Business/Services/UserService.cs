@@ -67,9 +67,9 @@ namespace Mag.Business.Services
             
         }
 
-        public Agent GetCurrentUserByHash(string passwordHash)
+        public Agent GetUserByEmailAndHash(string email, string passwordHash)
         {
-            return agentsRepository.List().FirstOrDefault(x => x.PasswordHash.Equals(passwordHash));
+            return agentsRepository.List().FirstOrDefault(x => x.Email.Equals(email) && x.PasswordHash.Equals(passwordHash));
         }
     }
 }

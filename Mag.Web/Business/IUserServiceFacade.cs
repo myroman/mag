@@ -9,5 +9,9 @@ namespace Mag.Web.Business
         bool IsAuthenticated(HttpContext context);
 
         Agent GetCurrentUser();
+
+        void RegisterUser(Agent newUser);
+
+        void LoginUser(Agent user);
     }
 }
