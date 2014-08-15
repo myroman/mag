@@ -21,11 +21,11 @@ namespace Mag.Web.Pages
 
         private IUserServiceFacade userServiceFacade;
 
-        private Agent currentAgent;
+        private Agent currentUser;
 
         protected bool IsAdminNow
         {
-            get { return currentAgent != null && currentAgent.IsAdmin.GetValueOrDefault(); }
+            get { return currentUser != null && currentUser.IsAdmin.GetValueOrDefault(); }
         }
 
         protected override void OnInit(EventArgs e)
@@ -50,6 +50,7 @@ namespace Mag.Web.Pages
                         sales = salesRepository.ReadSales(),
                         agents = agentsRepository.List(),
                         isAdminNow = IsAdminNow,
+                        currentUser,
                         insuranceTypes = insuranceTypesRepository.List()
                     };
                 return JsonConvert.SerializeObject(model, Formatting.Indented);
@@ -59,7 +60,7 @@ namespace Mag.Web.Pages
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            currentAgent = userServiceFacade.GetCurrentUser();
+            currentUser = userServiceFacade.GetCurrentUser();
 
             if (!userServiceFacade.IsAuthenticated(Context))
             {

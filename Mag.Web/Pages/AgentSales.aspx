@@ -72,7 +72,7 @@
     <td data-bind='visible: $root.isAdminNow'></td>
     <td>...</td>
     <td>
-      <select data-bind="options: $root.agents, optionsText: 'fullName', value: $root.editedAgent, optionsCaption: 'Выберите...'"></select>
+      <%--<select data-bind="options: $root.agents, optionsText: 'fullName', value: $root.editedAgent, optionsCaption: 'Выберите...'"></select>--%>
     </td>
     <td>
       <input type="text" data-bind='value: reportCode' /></td>

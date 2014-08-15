@@ -6,9 +6,6 @@
     <p>Привет<%= CurrentUser %>! Что будем делать?</p>
     <p>
       <div class='b-options'>
-        <a href="/Users/Register.aspx" class="btn btn-primary btn-lg">Зарегистрироваться</a>
-        <a href="/Users/Login.aspx" class="btn btn-primary btn-lg">Войти</a>
-        <a href="/Handlers/Logout.ashx" class="btn btn-primary btn-lg">Выйти</a>
         <a href='/Pages/AgentSales.aspx' class="btn btn-primary btn-lg">Мои продажи</a>
       </div>
     </p>

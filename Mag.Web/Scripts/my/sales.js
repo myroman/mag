@@ -72,10 +72,10 @@
     addFee: ko.observable(),
   };
   
-  it.editedAgent = ko.observable();
   it.editedInsurance = ko.observable();
-  it.isAdminNow = model.isAdminNow;
-
+  it.currentUser = model.currentUser;
+  it.isAdminNow = it.currentUser.IsAdmin;
+  
   function clearSale(x) {
     x.reportCode(null);
     x.create(null);
@@ -85,7 +85,7 @@
 
   it.saveNewItem = function () {
     var copy = ko.toJS(it.editedSaleData);
-    copy.agent = ko.toJS(it.editedAgent);
+    copy.agent = ko.toJS(it.currentUser);
     copy.insurance = ko.toJS(it.editedInsurance);
 
     $.ajax('/ApiHandler.axd', {
@@ -100,13 +100,11 @@
         it.items.push(new saleItem(resp));
 
         clearSale(it.editedSaleData);
-        it.editedAgent(null);
         it.editedInsurance(null);
       }
     });
   };
 
-  it.agents = ko.observableArray(model.agents);
   it.insuranceTypes = ko.observableArray(model.insuranceTypes);
 
   // Selecting
