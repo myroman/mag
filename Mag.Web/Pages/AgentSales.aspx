@@ -85,7 +85,7 @@
       <input type="text" class="inp-lg" data-bind='datepicker: true, value: create' />
     </td>
     <td>
-      <select class="inp-lg" data-bind="options: $root.insuranceTypes, optionsText: 'name', value: $root.editedInsurance, optionsCaption: 'Выберите...'"></select>
+      <select data-bind="options: $root.insuranceTypes, optionsText: 'name', value: $root.editedInsurance, optionsCaption: 'Выберите...'"></select>
     </td>
     <td>
       <input type="text" class="inp-sm" data-bind="value: contractsNumber"/>

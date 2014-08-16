@@ -15,7 +15,8 @@ namespace Mag.Business.Repositories
 
         public IEnumerable<InsuranceType> List()
         {
-            return DataContext.tbInsuranceTypes.Select(x => x.ToDomain());
+            var insuranceTypes = DataContext.tbInsuranceTypes.Select(x => x.ToDomain()).ToArray();
+            return insuranceTypes.OrderBy(x => x.Id);
         }
 
         public InsuranceType Read(int id)
