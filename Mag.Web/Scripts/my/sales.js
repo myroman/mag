@@ -53,10 +53,8 @@
 
   it.editedSaleData = {
     agent: {
-      
     },
     insurance: {
-      
     },
     reportCode: ko.observable(''),
     create: ko.observable(''),
@@ -71,10 +69,11 @@
     addFeePc: ko.observable(),
     addFee: ko.observable(),
   };
-  
-  it.editedInsurance = ko.observable();
+
   it.currentUser = model.currentUser;
-  it.isAdminNow = it.currentUser.IsAdmin;
+  it.isAdminNow = it.currentUser.isAdmin;
+
+  it.editedInsurance = ko.observable();
   
   function clearSale(x) {
     x.reportCode(null);
@@ -150,7 +149,10 @@ $(function() {
     ko.bindingHandlers.datepicker = {
       init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
         if (ko.unwrap(valueAccessor())) {
-          $(element).datepicker();
+          $(element).datepicker({
+            //dateFormat: 'dd/mm/yy'
+            dateFormat: 'yy-mm-dd'
+          });
         }
       },
       update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {

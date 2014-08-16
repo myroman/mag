@@ -1,13 +1,16 @@
 ﻿.b-table {
-  
 }
 
 .table-scroll {
   height:600px;
   overflow:auto;  
-  margin-top:20px;
+  /*margin-top:20px;*/
 }
 
 #table-wrapper table {
   width: 100%;
+}
+
+#table-wrapper {
+  font-size: 12px;
 }

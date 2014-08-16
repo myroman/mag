@@ -14,3 +14,8 @@
 .valid-wrapper {
   padding-top: 10px;
 }
+
+.container.container_wide {
+  width: 1280px;
+  padding: 0;
+}

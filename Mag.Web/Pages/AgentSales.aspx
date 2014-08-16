@@ -11,18 +11,21 @@
     <div class="col-lg-12 b-sales" data-model='<%= JsonModel %>'>
       <div class="well well-sm b-sales__controls-panel">
         <a href="javascript:void(0)" class="btn btn-success b-sales" data-bind='click: saveNewItem'>Добавить</a>
-        <asp:PlaceHolder runat="server" Visible="<%# IsAdminNow %>">
+        <asp:PlaceHolder runat="server" Visible="<%# true %>">
           <a href="javascript:void(0)" class='btn btn-warning' data-bind='css: getClassForDelete, click: deleteSelected'>Удалить выделенные</a>
         </asp:PlaceHolder>
       </div>
+      
       <div id="table-wrapper">
         <div class='table-scroll'>
-          <table class="table table-striped table-hover b-table">
+          <table class="table table-striped table-hover table-condensed b-table">
             <thead>
               <tr>
-                <th data-bind='visible: isAdminNow'></th>
+                <th data-bind='visible: $root.isAdminNow'></th>
                 <th title='Номер по порядку'>№</th>
-                <th title='ФИО Агента'>Агент</th>
+                <asp:PlaceHolder runat="server" Visible="<%# IsAdminNow %>">
+                  <th title='ФИО Агента'>Агент</th>
+                </asp:PlaceHolder>
                 <th title='Номер отчета'>Номер отчета</th>
                 <th title='Дата'>Дата</th>
                 <th title='Вид страхования'>Вид страхования</th>
@@ -38,10 +41,10 @@
               </tr>
             </thead>
             <tbody data-bind='foreach: items'>
-              <tr data-bind="template: { name: 'sale-view-template', data: $data }, css: {danger: checked}"></tr>
+              <tr data-bind="template: { name: 'view-sale-template', data: $data }, css: {danger: checked}"></tr>
             </tbody>
             <tfoot>
-              <tr data-bind="template: { name: 'sale-template', data: editedSaleData }"></tr>
+              <tr data-bind="template: { name: 'add-sale-template', data: editedSaleData }"></tr>
             </tfoot>
           </table>
         </div>
@@ -49,12 +52,14 @@
     </div>
   </form>
 
-  <script type="text/html" id="sale-view-template">
+  <script type="text/html" id="view-sale-template">
     <td data-bind='visible: $root.isAdminNow'>
       <input type="checkbox" data-bind='checked: checked'/>
     </td>
     <td data-bind='text: id'></td>
-    <td data-bind='text: agent().fullName'></td>
+    <asp:PlaceHolder runat="server" Visible="<%# IsAdminNow %>">
+      <td data-bind='text: agent().fullName'></td>
+    </asp:PlaceHolder>
     <td data-bind='text: reportCode'></td>
     <td data-bind='text: create'></td>
     <td data-bind='text: insurance().name'></td>
@@ -68,43 +73,43 @@
     <td data-bind='text: addFeePc'></td>
     <td data-bind='text: addFee'></td>    
   </script>
-  <script type="text/html" id="sale-template">
+  <script type="text/html" id="add-sale-template">
     <td data-bind='visible: $root.isAdminNow'></td>
-    <td>...</td>
+    <td>...</td>    
+    <asp:PlaceHolder runat="server" Visible="<%# IsAdminNow %>">
+      <td><%# CurrentUser.FullName %></td>
+    </asp:PlaceHolder>    
     <td>
-      <%--<select data-bind="options: $root.agents, optionsText: 'fullName', value: $root.editedAgent, optionsCaption: 'Выберите...'"></select>--%>
+      <input type="text" class="inp-lg" data-bind='value: reportCode' /></td>
+    <td>
+      <input type="text" class="inp-lg" data-bind='datepicker: true, value: create' />
     </td>
     <td>
-      <input type="text" data-bind='value: reportCode' /></td>
-    <td>
-      <input type="text" data-bind='datepicker: true, value: create' />
+      <select class="inp-lg" data-bind="options: $root.insuranceTypes, optionsText: 'name', value: $root.editedInsurance, optionsCaption: 'Выберите...'"></select>
     </td>
     <td>
-      <select data-bind="options: $root.insuranceTypes, optionsText: 'name', value: $root.editedInsurance, optionsCaption: 'Выберите...'"></select>
-    </td>
-    <td>
-      <input type="text" data-bind="value: contractsNumber"/>
+      <input type="text" class="inp-sm" data-bind="value: contractsNumber"/>
     </td>
     <td>
       <input type="text" data-bind="value: premium"/>
     </td>
     <td>
-      <input type="text" data-bind="value: paymentsNumber"/>
+      <input type="text" class="inp-sm" data-bind="value: paymentsNumber"/>
     </td>
     <td>
       <input type="text" data-bind="value: paidSum"/>
     </td>
     <td>
-      <input type="text" data-bind="value: feePc"/>
+      <input type="text" class="inp-sm" data-bind="value: feePc"/>
     </td>
     <td>
       <input type="text" data-bind="value: fee"/>
     </td>
     <td>
-      <input type="text" data-bind="value: comment"/>
+      <input type="text" class="inp-lg" data-bind="value: comment"/>
     </td>
     <td>
-      <input type="text" data-bind="value: addFeePc"/>
+      <input type="text" class="inp-sm" data-bind="value: addFeePc"/>
     </td>
     <td>
       <input type="text" data-bind="value: addFee"/>

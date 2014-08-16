@@ -10,6 +10,7 @@ using Autofac;
 using Mag.Business.Abstract;
 using Mag.Web.AutofacSupport;
 using Mag.Web.Business;
+using Mag.Web.Pages;
 
 namespace Mag.Web
 {
@@ -23,6 +24,8 @@ namespace Mag.Web
 
         private IUserServiceFacade userServiceFacade;
 
+        protected string AdditionalCssClass { get; set; }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -35,6 +38,11 @@ namespace Mag.Web
             else
             {
                 CreateIfNoCurrentUser();
+            }
+
+            if (Page is AgentSales)
+            {
+                AdditionalCssClass = "container_wide";
             }
         }
 
@@ -121,11 +129,6 @@ namespace Mag.Web
                     throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
                 }
             }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

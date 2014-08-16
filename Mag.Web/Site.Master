@@ -26,14 +26,14 @@
     </div>
   </div>
 
-  <div class='container'>
+  <div class='container <%= AdditionalCssClass %>'>
     <asp:ContentPlaceHolder runat="server" ID="MainContent" />
   </div>
   
   <asp:PlaceHolder runat="server">
     <%= Scripts.Render("~/bundles/js/all") %>
   </asp:PlaceHolder>
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="<%# ResolveClientUrl("~/scripts/bootstrap.min.js") %>"></script>
   <asp:ContentPlaceHolder runat="server" ID="BottomContent">
     
   </asp:ContentPlaceHolder>

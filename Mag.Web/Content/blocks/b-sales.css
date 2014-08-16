@@ -1,3 +1,11 @@
 ﻿.b-sales table td input[type=text] {
-  width: 100px;
+  width: 50px;
+}
+
+.b-sales td input[type=text].inp-sm {
+  width: 25px;
+}
+
+.b-sales td input[type=text].inp-lg {
+  width: 75px;
 }
