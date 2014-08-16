@@ -8,6 +8,9 @@ Mag.Web/connectionStrings.config
 Mag.Web/Web.Debug.config
 Mag.Web/Web.Release.config
 
+*.xls
+*.xlsx
+
 # User-specific files
 *.suo
 *.user
