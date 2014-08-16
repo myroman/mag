@@ -21,11 +21,18 @@
 
     this.update(plainData);
   };
+  function addTrailZero(seg) {
+    return ('0' + seg).slice(-2);
+  }
+  function getDateString(date) {
+    return date.getFullYear() + '-' + addTrailZero(date.getMonth() + 1) + '-' + addTrailZero(date.getDate() + 1);
+  }
   ko.utils.extend(saleItem.prototype, {
+    
     update: function(data) {
       this.id = data.id;
       this.reportCode(data.reportCode);
-      this.create(data.create);
+      this.create = getDateString(new Date(data.create));
       this.agent({
         id: data.agent.id,
         fullName: data.agent.fullName

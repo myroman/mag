@@ -8,6 +8,7 @@ using Mag.Web.AutofacSupport;
 using Mag.Web.Business;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Mag.Web.Pages
 {
@@ -52,6 +53,7 @@ namespace Mag.Web.Pages
                         currentUser = CurrentUser,
                         insuranceTypes = insuranceTypesRepository.List()
                     };
+                
                 return JsonConvert.SerializeObject(model, Formatting.Indented);
             }
         }
