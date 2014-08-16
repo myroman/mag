@@ -2,7 +2,6 @@
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 using Autofac;
@@ -48,17 +47,18 @@ namespace Mag.Web
         private void CreateForCurrentUser()
         {
             var name = userServiceFacade.GetCurrentUser().FullName;
+            var userIcon = "<span class=\"glyphicon glyphicon-user\"></span>&nbsp;";
             plhUser.Controls.Add(new HyperLink
             {
                 NavigateUrl = "#",
-                Text = name,
+                Text = HtmlHelper.Glyph("glyphicon-user") + name,
                 CssClass = "orange-clr"
             }.WrapInLi());
 
             plhUser.Controls.Add(new HyperLink
             {
                 NavigateUrl = "~/Handlers/Logout.ashx",
-                Text = "Выйти"
+                Text = HtmlHelper.Glyph("glyphicon-log-out") + "Выйти"
             }.WrapInLi());
         }
         
@@ -67,7 +67,7 @@ namespace Mag.Web
             plhUser.Controls.Add(new HyperLink
             {
                 NavigateUrl = "~/Users/Login.aspx",
-                Text = "Войти"
+                Text = HtmlHelper.Glyph("glyphicon-log-in") + "Войти"
             }.WrapInLi());
             plhUser.Controls.Add(new HyperLink
             {
