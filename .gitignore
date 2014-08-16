@@ -10,6 +10,7 @@ Mag.Web/Web.Release.config
 
 *.xls
 *.xlsx
+docs/
 
 # User-specific files
 *.suo
