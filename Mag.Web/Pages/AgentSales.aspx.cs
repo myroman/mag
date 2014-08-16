@@ -47,7 +47,7 @@ namespace Mag.Web.Pages
             {
                 var model = new
                     {
-                        sales = salesRepository.ReadSales(),
+                        sales = userServiceFacade.GetSalesForCurrentUser(),
                         agents = agentsRepository.List(),
                         isAdminNow = IsAdminNow,
                         currentUser = CurrentUser,

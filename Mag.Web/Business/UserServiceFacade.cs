@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 
 using Mag.Business.Abstract;
@@ -11,9 +13,12 @@ namespace Mag.Web.Business
 
         protected readonly IUserService UserService;
 
-        public UserServiceFacade(IUserService userService)
+        protected readonly ISalesRepository SalesRepository;
+
+        public UserServiceFacade(IUserService userService, ISalesRepository salesRepository)
         {
             UserService = userService;
+            SalesRepository = salesRepository;
         }
 
         public bool IsAuthenticated(HttpContext context)
@@ -58,6 +63,21 @@ namespace Mag.Web.Business
             var cookieValue = user.Email + "|" + user.PasswordHash;
 
             HttpContext.Current.Response.AppendCookie(new HttpCookie(UserCookieKey, cookieValue));
+        }
+
+        public IEnumerable<Sale> GetSalesForCurrentUser()
+        {
+            var currentUser = GetCurrentUser();
+            if (currentUser == null)
+            {
+                return new Sale[0];
+            }
+
+            if (currentUser.IsAdmin.GetValueOrDefault(false))
+            {
+                return SalesRepository.ReadSales();
+            }
+            return SalesRepository.ReadSales().Where(x => x.Agent.Id == currentUser.Id);
         }
     }
 }
