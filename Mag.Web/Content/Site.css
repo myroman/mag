@@ -19,3 +19,9 @@
   width: 1280px;
   padding: 0;
 }
+
+.navbar-nav > li > a.orange-clr,
+.navbar-nav > li > a.orange-clr:hover {
+  color: rgb(234, 253, 131);
+  font-weight: bolder;
+}

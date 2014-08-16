@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 
 using Autofac;
 
-using Mag.Business.Abstract;
 using Mag.Web.AutofacSupport;
 using Mag.Web.Business;
 using Mag.Web.Pages;
@@ -37,7 +36,7 @@ namespace Mag.Web
             }
             else
             {
-                CreateIfNoCurrentUser();
+                CreateIfAnonymous();
             }
 
             if (Page is AgentSales)
@@ -48,36 +47,33 @@ namespace Mag.Web
 
         private void CreateForCurrentUser()
         {
-            var li = CreateLi();
-            li.Controls.Add(new HyperLink
+            var name = userServiceFacade.GetCurrentUser().FullName;
+            plhUser.Controls.Add(new HyperLink
+            {
+                NavigateUrl = "#",
+                Text = name,
+                CssClass = "orange-clr"
+            }.WrapInLi());
+
+            plhUser.Controls.Add(new HyperLink
             {
                 NavigateUrl = "~/Handlers/Logout.ashx",
                 Text = "Выйти"
-            });
-            plhUser.Controls.Add(li);
+            }.WrapInLi());
         }
-
-        private Control CreateLi()
+        
+        private void CreateIfAnonymous()
         {
-            return new HtmlGenericControl("li");
-        }
-
-        private void CreateIfNoCurrentUser()
-        {
-            var li = CreateLi();
-            li.Controls.Add(new HyperLink
-                {
-                    NavigateUrl = "~/Users/Login.aspx",
-                    Text = "Войти"
-                });
-            plhUser.Controls.Add(li);
-            li = CreateLi();
-            li.Controls.Add(new HyperLink
-                {
-                    NavigateUrl = "~/Users/Register.aspx",
-                    Text = "Зарегистрироваться"
-                });
-            plhUser.Controls.Add(li);
+            plhUser.Controls.Add(new HyperLink
+            {
+                NavigateUrl = "~/Users/Login.aspx",
+                Text = "Войти"
+            }.WrapInLi());
+            plhUser.Controls.Add(new HyperLink
+            {
+                NavigateUrl = "~/Users/Register.aspx",
+                Text = "Зарегистрироваться"
+            }.WrapInLi());
         }
 
         protected void Page_Init(object sender, EventArgs e)
@@ -98,10 +94,10 @@ namespace Mag.Web
                 Page.ViewStateUserKey = antiXsrfTokenValue;
 
                 var responseCookie = new HttpCookie(AntiXsrfTokenKey)
-                    {
-                        HttpOnly = true,
-                        Value = antiXsrfTokenValue
-                    };
+                {
+                    HttpOnly = true,
+                    Value = antiXsrfTokenValue
+                };
                 if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
                 {
                     responseCookie.Secure = true;
