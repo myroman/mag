@@ -18,6 +18,12 @@ namespace Mag.Business.Domain
         [JsonProperty("create")]
         public DateTime CreateDate { get; set; }
 
+        [JsonProperty("createFormatted")]
+        public string CreateDateFormatted
+        {
+            get { return CreateDate.ToJsDateString(); }
+        }
+
         [JsonProperty("insurance")]
         public InsuranceType Insurance { get; set; }
 

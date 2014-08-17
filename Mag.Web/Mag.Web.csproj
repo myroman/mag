@@ -185,6 +185,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Pages\AgentSales.aspx" />
+    <Content Include="Pages\MagAnalytics.aspx" />
+    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-ui.js" />
@@ -192,6 +194,8 @@
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\my\analytics.js" />
+    <Content Include="Scripts\my\koExtensions.js" />
     <Content Include="Scripts\my\sales.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -286,6 +290,13 @@
     </Compile>
     <Compile Include="Pages\AgentSales.aspx.designer.cs">
       <DependentUpon>AgentSales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MagAnalytics.aspx.cs">
+      <DependentUpon>MagAnalytics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MagAnalytics.aspx.designer.cs">
+      <DependentUpon>MagAnalytics.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

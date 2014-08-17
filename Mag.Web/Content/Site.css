@@ -24,3 +24,12 @@
 .navbar-nav > li > a.orange-clr:hover {
   font-weight: bolder;
 }
+
+/*Analytics */
+
+.b-anls .well label {
+  float: left;
+  width: 40px;
+  text-align: left;
+  display: inline-block;
+}

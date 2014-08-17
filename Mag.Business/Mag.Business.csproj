@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataContext.dbml</DependentUpon>
     </Compile>
+    <Compile Include="DateHelper.cs" />
     <Compile Include="DomainException.cs" />
     <Compile Include="Domain\Agent.cs" />
     <Compile Include="Domain\InsuranceType.cs" />
