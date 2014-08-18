@@ -13,12 +13,17 @@
       },
       type: 'GET',
       dataType: 'json',
-      
+      beforeSend: function () {
+        $('.loader').show();
+      },
       success: function (data) {
         it.reportItems.removeAll();
         $.each(data, function() {
           it.reportItems.push(this);
         });
+      },
+      complete: function () {
+        $('.loader').hide();
       }
     });
   };
@@ -48,7 +53,6 @@
   });
 
   it.filter = new filterData(model.filter);
-  
 
   // calling
   it.refresh();
@@ -59,13 +63,4 @@ $(function () {
     var model = $('.b-anls').data('model');
     ko.applyBindings(new AnalyticsVm(model));
   }
-
-  $.ajaxSetup({
-    beforeSend: function() {
-      $('.loader').show();
-    },
-    complete: function() {
-      $('.loader').hide();
-    }
-  });
 });

@@ -12,10 +12,6 @@
     <form runat="server" class="form-horizontal col-lg-10">
       <div class="well well-sm cf">
         <div class='form-group-sm'>
-<div class='loader'>
-          <img src='<%= ResolveClientUrl("~/Content/spinner.gif") %>' />
-        </div>
-
           <div class='col-lg-2'>
             <a href="javascript:void(0)" class="form-control btn btn-success" data-bind='click: refresh'>
               <span class='glyphicon glyphicon-refresh'></span>&nbsp;Фильтровать
@@ -59,11 +55,14 @@
               <th title='Количество договоров по всем агентам, шт.'>Кол-во договоров</th>
             </tr>
           </thead>
+
           <tbody data-bind='foreach: reportItems'>
             <tr data-bind="template: { name: 'report-template', data: $data }"></tr>
           </tbody>
         </table>
-
+        <div class='loader'>
+          <img src='<%= ResolveClientUrl("~/Content/spinner.gif") %>' />
+        </div>
       </div>
     </form>
 
