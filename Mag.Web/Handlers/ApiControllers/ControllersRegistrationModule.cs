@@ -6,8 +6,8 @@ namespace Mag.Web.Handlers.ApiControllers
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<SaleController>()
-                .As<IApiController>();
+            builder.RegisterType<SaleController>();
+            builder.RegisterType<AnalyticsController>();
         }
     }
 }

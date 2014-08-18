@@ -13,6 +13,10 @@ namespace Mag.Business.Services
                 .SingleInstance();
 
             builder.RegisterType<SimpleAes>();
+
+            builder.RegisterType<AnalyticsSelector>()
+                .As<IAnalyticsSelector>()
+                .SingleInstance();
         }
     }
 }

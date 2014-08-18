@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAgentsRepository.cs" />
+    <Compile Include="Abstract\IAnalyticsSelector.cs" />
     <Compile Include="Abstract\IUserService.cs" />
     <Compile Include="Abstract\IInsuranceTypesRepository.cs" />
     <Compile Include="Abstract\ISalesRepository.cs" />
@@ -63,6 +64,8 @@
     <Compile Include="DateHelper.cs" />
     <Compile Include="DomainException.cs" />
     <Compile Include="Domain\Agent.cs" />
+    <Compile Include="Domain\Analytics\AnalyticsRecord.cs" />
+    <Compile Include="Domain\Analytics\AnalyticsSelectionFilter.cs" />
     <Compile Include="Domain\InsuranceType.cs" />
     <Compile Include="Domain\Sale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Repositories\SqlAgentRepository.cs" />
     <Compile Include="Repositories\SqlInsuranceTypesRepository.cs" />
     <Compile Include="Repositories\SqlRepositoryBase.cs" />
+    <Compile Include="Services\AnalyticsSelector.cs" />
     <Compile Include="Services\ServiceRegistrationModule.cs" />
     <Compile Include="Services\SimpleAes.cs" />
     <Compile Include="Services\UserService.cs" />

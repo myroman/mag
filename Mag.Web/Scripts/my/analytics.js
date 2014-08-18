@@ -2,9 +2,30 @@
   console.log(model);
   var it = this;
 
-  it.refresh = function() {
-    console.log('clicked');
+  it.refresh = function () {
+    var plainFilterObj = ko.toJS(it.filter);
+    
+    $.ajax('/ApiHandler.axd', {
+      data: {
+        entity: 'anlsMag',
+        action: 'list',
+        object: ko.toJSON(plainFilterObj)
+      },
+      type: 'GET',
+      dataType: 'json',
+      
+      success: function (data) {
+        it.reportItems.removeAll();
+        $.each(data, function() {
+          it.reportItems.push(this);
+        });
+      }
+    });
   };
+  it.reportItems = ko.observableArray();
+  it.hasItems = ko.computed(function() {
+    return it.reportItems().length > 0;
+  }, this);
   
   var filterData = function (plainData) {
     this.from = ko.observable();
@@ -17,14 +38,6 @@
   };
 
   ko.utils.extend(filterData.prototype, {
-    convertDate: function (serverDate) {
-      console.log('Serverdate: ' + serverDate);
-      var date = new Date(serverDate);
-      var d2 = date.toUTCString();
-      var dateString = Mag.DateUtils.getDateString(date);
-      console.log('Datestring: ' + dateString); 
-      return dateString;
-    },
     update: function (data) {
       this.defaultFrom = data.defaultFrom;
       this.defaultTo = data.defaultTo;
@@ -35,6 +48,10 @@
   });
 
   it.filter = new filterData(model.filter);
+  
+
+  // calling
+  it.refresh();
 }
 
 $(function () {
@@ -42,4 +59,13 @@ $(function () {
     var model = $('.b-anls').data('model');
     ko.applyBindings(new AnalyticsVm(model));
   }
+
+  $.ajaxSetup({
+    beforeSend: function() {
+      $('.loader').show();
+    },
+    complete: function() {
+      $('.loader').hide();
+    }
+  });
 });

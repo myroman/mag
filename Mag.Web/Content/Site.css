@@ -25,6 +25,10 @@
   font-weight: bolder;
 }
 
+.loader {
+  display: none;
+}
+
 /*Analytics */
 
 .b-anls .well label {

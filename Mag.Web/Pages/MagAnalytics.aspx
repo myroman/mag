@@ -45,7 +45,31 @@
           </div>
         </div>
       </div>
+
+      <div class='table table-striped table-hover table-condensed b-table'>
+        <table>
+          <thead>
+            <tr>
+              <th title='Виды страхования'>Виды страхования</th>
+              <th title='Сумма продаж по всем агентам, руб.'>Сумма продаж, руб.</th>
+              <th title='Количество договоров по всем агентам, шт.'>Кол-во договоров</th>
+            </tr>
+          </thead>
+          <tbody data-bind='foreach: reportItems'>
+            <tr data-bind="template: { name: 'report-template', data: $data }"></tr>
+          </tbody>
+        </table>
+        <div class='loader'>
+          <img src='<%= ResolveClientUrl("~/Content/spinner.gif") %>' />
+        </div>
+      </div>
     </form>
+
+    <script type="text/html" id="report-template">
+      <td data-bind='text: insuranceType'></td>
+      <td data-bind='text: totalSum'></td>
+      <td data-bind='text: totalContractsNumber'></td>
+    </script>
   </div>
 </asp:Content>
 <asp:Content ContentPlaceHolderID="BottomContent" runat="server">
