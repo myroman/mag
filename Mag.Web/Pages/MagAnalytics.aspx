@@ -46,8 +46,8 @@
         </div>
       </div>
 
-      <div class='table table-striped table-hover table-condensed b-table'>
-        <table>
+      <div class=''>
+        <table class='table table-striped table-hover table-condensed table-bordered b-table'>
           <thead>
             <tr>
               <th title='Виды страхования'>Виды страхования</th>
