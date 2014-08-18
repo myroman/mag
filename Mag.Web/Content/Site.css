@@ -27,6 +27,7 @@
 
 .loader {
   display: none;
+    float:left;
 }
 
 /*Analytics */
