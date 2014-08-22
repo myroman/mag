@@ -58,7 +58,8 @@
   <ItemGroup>
     <Compile Include="Analytics\AnalyticsSelectorTests.cs" />
     <Compile Include="Analytics\FilterFactory.cs" />
-    <Compile Include="Analytics\InsuranceTypeFactory.cs" />
+    <Compile Include="Analytics\InsuranceFactory.cs" />
+    <Compile Include="Analytics\SaleFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

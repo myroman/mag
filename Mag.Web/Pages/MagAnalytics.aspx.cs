@@ -55,27 +55,37 @@ namespace Mag.Web.Pages
             {
                 return new
                 {
-                    defaultFrom = YearBegin.ToJsDateString(),
-                    defaultTo = YearEnd.ToJsDateString()
+                    defaultFrom = DateHelper.YearBegin.ToJsDateString(),
+                    defaultTo = DateHelper.YearEnd.ToJsDateString(),
+                    quarters = new[]
+                    {
+                        new
+                        {
+                            from = DateHelper.Quart1.ToJsDateString(),
+                            to = DateHelper.Quart2.AddDays(-1).ToJsDateString(),
+                        },
+                        new
+                        {
+                            from = DateHelper.Quart2.ToJsDateString(),
+                            to = DateHelper.Quart3.AddDays(-1).ToJsDateString(),
+                        },
+                        new
+                        {
+                            from = DateHelper.Quart3.ToJsDateString(),
+                            to = DateHelper.Quart4.AddDays(-1).ToJsDateString(),
+                        },
+                        new
+                        {
+                            from = DateHelper.Quart4.ToJsDateString(),
+                            to = DateHelper.YearEnd.ToJsDateString(),
+                        },
+                        new
+                        {
+                            from = DateHelper.Quart1.ToJsDateString(),
+                            to = DateHelper.YearEnd.ToJsDateString(),
+                        }
+                    }
                 };
-            }
-        }
-
-        private DateTime YearBegin
-        {
-            get
-            {
-                var now = DateTime.Now;
-                return new DateTime(now.Year, 1, 1);
-            }
-        }
-
-        private DateTime YearEnd
-        {
-            get
-            {
-                var now = DateTime.Now;
-                return new DateTime(now.Year, 12, 31);
             }
         }
     }

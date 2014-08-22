@@ -29,17 +29,17 @@
 
           <div class='col-lg-4'>
             <div class="btn-group">
-              <a href="#" class="btn btn-info btn-sm disabled">За квартал</a>
-              <a href="#" class="btn btn-info btn-sm dropdown-toggle disabled" data-toggle="dropdown">
+              <a href="#" class="btn btn-info btn-sm">За квартал</a>
+              <a href="#" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a class='quart1' href="#">1-й квартал</a></li>
-                <li><a class='quart2' href="#">2-й квартал</a></li>
-                <li><a class='quart3' href="#">3-й квартал</a></li>
-                <li><a class='quart4' href="#">4-й квартал</a></li>
+                <li><a class='quart1' href="#" data-bind='click: setQuart1'>1-й квартал</a></li>
+                <li><a class='quart2' href="#" data-bind='click: setQuart2'>2-й квартал</a></li>
+                <li><a class='quart3' href="#" data-bind='click: setQuart3'>3-й квартал</a></li>
+                <li><a class='quart4' href="#" data-bind='click: setQuart4'>4-й квартал</a></li>
                 <li class="divider"></li>
-                <li><a class='year' href="#">Год</a></li>
+                <li><a class='year' href="#" data-bind='click: setYear'>Год</a></li>
               </ul>
             </div>
           </div>

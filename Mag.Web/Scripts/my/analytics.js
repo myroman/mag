@@ -46,13 +46,37 @@
     update: function (data) {
       this.defaultFrom = data.defaultFrom;
       this.defaultTo = data.defaultTo;
-
+      this.quarters = data.quarters;
+      
       this.from(this.defaultFrom);
       this.to(this.defaultTo);
     }
   });
 
   it.filter = new filterData(model.filter);
+
+  function setDateIntervalAndRefresh(optionIndex) {
+    var range = it.filter.quarters[optionIndex];
+    it.filter.from(range.from);
+    it.filter.to(range.to);
+
+    it.refresh();
+  }
+  it.setQuart1 = function () {
+    setDateIntervalAndRefresh(0);
+  };
+  it.setQuart2 = function() {
+    setDateIntervalAndRefresh(1);
+  };
+  it.setQuart3 = function () {
+    setDateIntervalAndRefresh(2);
+  };
+  it.setQuart4 = function () {
+    setDateIntervalAndRefresh(3);
+  };
+  it.setYear = function() {
+    setDateIntervalAndRefresh(4);
+  };
 
   // calling
   it.refresh();

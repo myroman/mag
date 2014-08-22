@@ -22,5 +22,4 @@ Mag.DateUtils = {
   addTrailZero: function (seg) {
     return ('0' + seg).slice(-2);
   }
-
 };

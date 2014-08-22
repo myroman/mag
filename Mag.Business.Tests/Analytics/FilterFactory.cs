@@ -17,5 +17,17 @@ namespace Mag.Business.Tests.Analytics
                 };
             }
         }
+
+        public static AnalyticsSelectionFilter Quart2
+        {
+            get
+            {
+                return new AnalyticsSelectionFilter
+                {
+                    From = new DateTime(DateHelper.CurrentYear, 4, 1),
+                    To = new DateTime(DateHelper.CurrentYear, 7, 1)
+                };
+            }
+        }
     }
 }

@@ -1,9 +1,13 @@
-﻿using Mag.Business.Domain;
+﻿using System;
+
+using Mag.Business.Domain;
 
 namespace Mag.Business.Tests.Analytics
 {
-    public static class InsuranceTypeFactory
+    public static class InsuranceFactory
     {
+        private static Random randomInt = new Random();
+
         public static InsuranceType A
         {
             get
@@ -27,5 +31,19 @@ namespace Mag.Business.Tests.Analytics
                 };
             }
         }
+
+        // use this if you need to set insurance for a set of sales, so that they aren't grouped.
+        public static InsuranceType Rand
+        {
+            get
+            {
+                return new InsuranceType
+                {
+                    Id = randomInt.Next(),
+                    Name = randomInt.Next().ToString()
+                };
+            }
+        }
+
     }
 }

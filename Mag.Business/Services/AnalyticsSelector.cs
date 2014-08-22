@@ -17,10 +17,14 @@ namespace Mag.Business.Services
 
         public IEnumerable<AnalyticsRecord> CalculateReport(AnalyticsSelectionFilter filter)
         {   
-            var allSales = salesRepository.ReadSales().ToArray();
+            var allSales = salesRepository.ReadSales()
+                .Where(x => x.CreateDate >= filter.From && x.CreateDate <= filter.To)
+                .OrderBy(x => x.CreateDate)
+                .ToArray();
 
             var salesByInsurance = allSales.GroupBy(x => x.Insurance, x => x);
-            return salesByInsurance.Select(salesWithSimilarInsurance => new AnalyticsRecord
+            return salesByInsurance
+                .Select(salesWithSimilarInsurance => new AnalyticsRecord
             {
                 InsuranceType = salesWithSimilarInsurance.Key.Name, 
                 TotalContractsNumber = salesWithSimilarInsurance.Sum(x => x.ContractsNumber.GetValueOrDefault()), 
