@@ -37,3 +37,9 @@
   text-align: left;
   display: inline-block;
 }
+
+.table-striped > tbody > tr.category_caps td {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: silver;
+}

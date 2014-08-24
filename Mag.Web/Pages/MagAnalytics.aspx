@@ -57,7 +57,7 @@
           </thead>
 
           <tbody data-bind='foreach: reportItems'>
-            <tr data-bind="template: { name: 'report-template', data: $data }"></tr>
+            <tr data-bind="template: { name: 'report-template', data: $data }, css: { category_caps: $data.useCaps }"></tr>
           </tbody>
         </table>
         <div class='loader'>
@@ -67,7 +67,7 @@
     </form>
 
     <script type="text/html" id="report-template">
-      <td data-bind='text: insuranceType'></td>
+      <td data-bind='text: categoryName'></td>
       <td data-bind='text: totalSum'></td>
       <td data-bind='text: totalContractsNumber'></td>
     </script>

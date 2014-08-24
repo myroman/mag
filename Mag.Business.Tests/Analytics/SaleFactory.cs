@@ -8,7 +8,7 @@ namespace Mag.Business.Tests.Analytics
     {
         public static Sale NewSale
         {
-            get { return new Sale().CreateDate(DateTime.Now); }
+            get { return new Sale().CreateDate(DateTime.Now).Insurance(InsuranceFactory.Rand); }
         }
 
         public static Sale PaidSum(this Sale sale, int val)
