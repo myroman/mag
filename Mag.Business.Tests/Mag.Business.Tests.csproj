@@ -56,6 +56,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Account\AgentFactory.cs" />
+    <Compile Include="Account\UserServiceTests.cs" />
     <Compile Include="Analytics\AnalyticsSelectorTests.cs" />
     <Compile Include="Analytics\FilterFactory.cs" />
     <Compile Include="Analytics\InsuranceFactory.cs" />

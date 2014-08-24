@@ -8,8 +8,6 @@ namespace Mag.Business.Abstract
 
         void Login(Agent agent);
 
-        void Logout(Agent agent);
-
         Agent GetUserByEmailAndHash(string email, string passwordHash);
     }
 }

@@ -12,14 +12,22 @@ namespace Mag.Business.Services
 
         private readonly SimpleAes simpleAesHelper;
 
-        public UserService(IAgentsRepository agentsRepository, SimpleAes simpleAesHelper)
+        private readonly IAccountSettings accountSettings;
+
+        public UserService(IAgentsRepository agentsRepository, SimpleAes simpleAesHelper, IAccountSettings accountSettings)
         {
             this.agentsRepository = agentsRepository;
             this.simpleAesHelper = simpleAesHelper;
+            this.accountSettings = accountSettings;
         }
 
         public void RegisterUser(Agent agent)
         {
+            if (accountSettings.RegistrationAccessCode != agent.AccessCode)
+            {
+                throw new DomainException("Вы ввели неверный код доступа");
+            }
+
             if (agentsRepository.FindByEmail(agent.Email) != null)
             {
                 throw new DomainException("Такой пользователь уже зарегистрирован");
@@ -60,11 +68,6 @@ namespace Mag.Business.Services
             {
                 throw new DomainException("Error when encrypting", exc);
             }
-        }
-
-        public void Logout(Agent agent)
-        {
-            
         }
 
         public Agent GetUserByEmailAndHash(string email, string passwordHash)

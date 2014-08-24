@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAccountSettings.cs" />
     <Compile Include="Abstract\IAgentsRepository.cs" />
     <Compile Include="Abstract\IAnalyticsSelector.cs" />
     <Compile Include="Abstract\IUserService.cs" />
@@ -63,6 +64,7 @@
     </Compile>
     <Compile Include="DateHelper.cs" />
     <Compile Include="DomainException.cs" />
+    <Compile Include="DomainRegistrationModule.cs" />
     <Compile Include="Domain\Agent.cs" />
     <Compile Include="Domain\Analytics\AnalyticsRecord.cs" />
     <Compile Include="Domain\Analytics\AnalyticsSelectionFilter.cs" />
@@ -74,7 +76,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Repositories\DomainRegistrationModule.cs" />
+    <Compile Include="Repositories\RepoRegistrationModule.cs" />
     <Compile Include="Repositories\Mappers\AgentsMapper.cs" />
     <Compile Include="Repositories\Mappers\InsuranceTypesMapper.cs" />
     <Compile Include="Repositories\Mappers\SalesMapper.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Services\ServiceRegistrationModule.cs" />
     <Compile Include="Services\SimpleAes.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="SettingsReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

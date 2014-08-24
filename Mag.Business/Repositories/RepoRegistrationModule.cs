@@ -6,7 +6,7 @@ using Mag.Business.Abstract;
 
 namespace Mag.Business.Repositories
 {
-    public class DomainRegistrationModule : Module
+    public class RepoRegistrationModule : Module
     {
         private const string ConnectionStringParam = "connectionString";
 

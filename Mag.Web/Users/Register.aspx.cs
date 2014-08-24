@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Web.UI;
 
 using Autofac;
@@ -31,11 +32,12 @@ namespace Mag.Web.Users
         private void BtnRegisterOnClick(object sender, EventArgs eventArgs)
         {
             var newAgent = new Agent
-                {
-                    Email = txtEmail.Text,
-                    FullName = txtFullName.Text,
-                    Password = txtPassword.Text
-                };
+            {
+                Email = txtEmail.Text,
+                FullName = txtFullName.Text,
+                Password = txtPassword.Text,
+                AccessCode = txtAccessCode.Text
+            };
             try
             {
                 userServiceFacade.RegisterUser(newAgent);

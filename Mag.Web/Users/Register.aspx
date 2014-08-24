@@ -64,6 +64,14 @@
               CssClass="control-label" Display="Dynamic" ErrorMessage="Введенные пароли не совпадают." />
           </div>
         </div>
+        
+        <div class='form-group'>
+          <asp:Label runat="server" AssociatedControlID="txtAccessCode" 
+          CssClass="<%# LabelCssClass %>" Text="Код доступа" />
+          <div class='<%# InputWrapperCssClass %>'>
+            <asp:TextBox runat="server" CssClass="form-control" ID="txtAccessCode" TextMode="Password" />            
+          </div>
+        </div>
 
         <div class="form-group">
           <div class="col-lg-10">

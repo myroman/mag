@@ -29,5 +29,8 @@ namespace Mag.Business.Domain
 
         [JsonIgnore]
         public string PasswordHash { get; internal set; }
+
+        [JsonIgnore]
+        public string AccessCode { get; set; }
     }
 }
