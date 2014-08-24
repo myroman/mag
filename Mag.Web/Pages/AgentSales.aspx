@@ -11,7 +11,7 @@
     <div class="col-lg-12 b-sales" data-model='<%= JsonModel %>'>
       <div class="well well-sm b-sales__controls-panel">
         <a href="javascript:void(0)" class="btn btn-success b-sales" data-bind='click: saveNewItem'>Добавить</a>
-        <asp:PlaceHolder runat="server" Visible="<%# true %>">
+        <asp:PlaceHolder runat="server" Visible="<%# IsAdminNow %>">
           <a href="javascript:void(0)" class='btn btn-warning' data-bind='css: getClassForDelete, click: deleteSelected'>Удалить выделенные</a>
         </asp:PlaceHolder>
       </div>

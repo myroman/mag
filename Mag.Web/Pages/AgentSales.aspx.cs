@@ -8,15 +8,12 @@ using Mag.Web.AutofacSupport;
 using Mag.Web.Business;
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace Mag.Web.Pages
 {
     public partial class AgentSales : System.Web.UI.Page
     {
         private IAgentsRepository agentsRepository;
-
-        private ISalesRepository salesRepository;
 
         private IInsuranceTypesRepository insuranceTypesRepository;
 
@@ -35,7 +32,6 @@ namespace Mag.Web.Pages
 
             var container = Context.GetContainer();
 
-            salesRepository = container.Resolve<ISalesRepository>();
             agentsRepository = container.Resolve<IAgentsRepository>();
             userServiceFacade = container.Resolve<IUserServiceFacade>();
             insuranceTypesRepository = container.Resolve<IInsuranceTypesRepository>();

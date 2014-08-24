@@ -24,3 +24,22 @@
 .navbar-nav > li > a.orange-clr:hover {
   font-weight: bolder;
 }
+
+.loader {
+  display: none;
+}
+
+/*Analytics */
+
+.b-anls .well label {
+  float: left;
+  width: 40px;
+  text-align: left;
+  display: inline-block;
+}
+
+.table-striped > tbody > tr.category_caps td {
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: silver;
+}

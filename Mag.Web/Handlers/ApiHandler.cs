@@ -17,7 +17,10 @@ namespace Mag.Web.Handlers
             switch (entity)
             {
                 case "sale":
-                    controller = container.Resolve<IApiController>(new NamedParameter("context", context));
+                    controller = container.Resolve<SaleController>(new NamedParameter("context", context));
+                    break;
+                case "anlsMag":
+                    controller = container.Resolve<AnalyticsController>(new NamedParameter("context", context));
                     break;
                 default:
                     controller = null;

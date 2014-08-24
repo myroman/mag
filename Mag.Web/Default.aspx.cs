@@ -1,5 +1,6 @@
 ﻿using Autofac;
 
+using Mag.Business.Domain;
 using Mag.Web.AutofacSupport;
 using Mag.Web.Business;
 
@@ -7,19 +8,27 @@ namespace Mag.Web
 {
     public partial class Default : System.Web.UI.Page
     {
-        private IUserServiceFacade userService;
+        private IUserServiceFacade userServiceFacade;
+
+        protected Agent CurrentUser { get; set; }
+
+        protected bool IsAdminNow
+        {
+            get { return CurrentUser != null && CurrentUser.IsAdmin.GetValueOrDefault(); }
+        }
 
         protected override void OnLoad(System.EventArgs e)
         {
             base.OnLoad(e);
-            userService = Context.GetContainer().Resolve<IUserServiceFacade>();
+            userServiceFacade = Context.GetContainer().Resolve<IUserServiceFacade>();
+            CurrentUser = userServiceFacade.GetCurrentUser();
         }
 
-        protected string CurrentUser
+        protected string CurrentUserName
         {
             get
             {
-                var currentAgent = userService.GetCurrentUser();
+                var currentAgent = userServiceFacade.GetCurrentUser();
                 if (currentAgent == null || string.IsNullOrEmpty(currentAgent.FullName))
                 {
                     return string.Empty;

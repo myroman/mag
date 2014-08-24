@@ -21,18 +21,13 @@
 
     this.update(plainData);
   };
-  function addTrailZero(seg) {
-    return ('0' + seg).slice(-2);
-  }
-  function getDateString(date) {
-    return date.getFullYear() + '-' + addTrailZero(date.getMonth() + 1) + '-' + addTrailZero(date.getDate() + 1);
-  }
+
   ko.utils.extend(saleItem.prototype, {
     
     update: function(data) {
       this.id = data.id;
       this.reportCode(data.reportCode);
-      this.create = getDateString(new Date(data.create));
+      this.create = data.createFormatted;
       this.agent({
         id: data.agent.id,
         fullName: data.agent.fullName
@@ -152,20 +147,6 @@
 
 $(function() {
   if ($('.b-sales').length > 0) {
-    
-    ko.bindingHandlers.datepicker = {
-      init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-        if (ko.unwrap(valueAccessor())) {
-          $(element).datepicker({
-            //dateFormat: 'dd/mm/yy'
-            dateFormat: 'yy-mm-dd'
-          });
-        }
-      },
-      update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
-      }
-    };
-
     var model = $('.b-sales').data('model');
     ko.applyBindings(new SalesVm(model));
   }
