@@ -1,5 +1,4 @@
 ﻿function SalesVm(model) {
-  console.log(model);
   var it = this;
 
   var saleItem = function(plainData) {

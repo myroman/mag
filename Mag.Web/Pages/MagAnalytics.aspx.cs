@@ -35,6 +35,12 @@ namespace Mag.Web.Pages
         {
             base.OnLoad(e);
             CurrentUser = userServiceFacade.GetCurrentUser();
+            Page.Title = "Аналитика продаж";
+            if (!userServiceFacade.IsAuthenticated(Context) || !IsAdminNow)
+            {
+                Response.Redirect("~/");
+                return;
+            }
 
             DataBind();
         }

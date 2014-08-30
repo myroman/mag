@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Web.UI;
 
 using Autofac;
@@ -18,6 +17,7 @@ namespace Mag.Web.Users
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            Page.Title = "Регистрация нового пользователя";
             userServiceFacade = Context.GetContainer().Resolve<IUserServiceFacade>();
             btnRegister.Click += BtnRegisterOnClick;
 

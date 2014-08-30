@@ -1,5 +1,4 @@
 ﻿function AnalyticsVm(model) {
-  console.log(model);
   var it = this;
 
   it.refresh = function () {
