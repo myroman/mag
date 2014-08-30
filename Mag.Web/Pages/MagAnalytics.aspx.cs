@@ -35,6 +35,8 @@ namespace Mag.Web.Pages
         {
             base.OnLoad(e);
             CurrentUser = userServiceFacade.GetCurrentUser();
+
+            DataBind();
         }
 
         protected string JsonModel

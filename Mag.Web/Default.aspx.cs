@@ -22,6 +22,8 @@ namespace Mag.Web
             base.OnLoad(e);
             userServiceFacade = Context.GetContainer().Resolve<IUserServiceFacade>();
             CurrentUser = userServiceFacade.GetCurrentUser();
+
+            DataBind();
         }
 
         protected string CurrentUserName
