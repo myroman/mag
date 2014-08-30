@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
-  <title><%: Page.Title %> - My ASP.NET Application</title>
+  <title><%: Page.Title %> - МАГ РГС</title>
   
   <asp:ContentPlaceHolder runat="server" ID="HeadContent">
     <link rel="stylesheet" href="<%= ResolveClientUrl("~/Content/Site.css") %>"/>

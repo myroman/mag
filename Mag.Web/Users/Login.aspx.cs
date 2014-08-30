@@ -19,6 +19,7 @@ namespace Mag.Web.Users
         {
             base.OnLoad(e);
             userServiceFacade = Context.GetContainer().Resolve<IUserServiceFacade>();
+            Page.Title = "Вход";
             btnSubmit.Click += BtnSubmitOnClick;
 
             if (!IsPostBack)

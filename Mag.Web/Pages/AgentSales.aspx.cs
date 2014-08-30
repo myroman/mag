@@ -58,13 +58,25 @@ namespace Mag.Web.Pages
         {
             base.OnLoad(e);
             CurrentUser = userServiceFacade.GetCurrentUser();
-
+            SetupTitle();
             if (!userServiceFacade.IsAuthenticated(Context))
             {
                 Response.Redirect("~/");
                 return;
             }
             DataBind();
+        }
+
+        private void SetupTitle()
+        {
+            if (IsAdminNow)
+            {
+                Page.Title = "Продажи всех агентов";
+            }
+            else
+            {
+                Page.Title = "Мои продажи";
+            }
         }
 
         protected Sale GetSale(object item)
