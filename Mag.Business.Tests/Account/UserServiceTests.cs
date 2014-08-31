@@ -1,6 +1,4 @@
-﻿using System;
-
-using Mag.Business.Abstract;
+﻿using Mag.Business.Abstract;
 using Mag.Business.Domain;
 using Mag.Business.Services;
 

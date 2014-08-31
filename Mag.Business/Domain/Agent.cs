@@ -32,5 +32,10 @@ namespace Mag.Business.Domain
 
         [JsonIgnore]
         public string AccessCode { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Agent(Id={0},Email={4},Name={1},Pwd={2},Hash={3})", Id, FullName, Password, PasswordHash, Email);
+        }
     }
 }

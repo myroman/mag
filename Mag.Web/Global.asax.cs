@@ -9,8 +9,14 @@ namespace Mag.Web
 {
     public class Global : HttpApplication
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private void Application_Start(object sender, EventArgs e)
         {
+            log4net.Config.XmlConfigurator.Configure();
+
+            log.Debug("Application started");
+
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Context.SetCompositionRoot(CompositionRootBuilder.Build());
         }

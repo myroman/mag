@@ -1,0 +1,1 @@
+﻿2014-08-31 13:40:42,472 DEBUG [26] Mag.Web.Global.Application_Start - Application started
