@@ -3,7 +3,12 @@
 
   it.refresh = function () {
     var plainFilterObj = ko.toJS(it.filter);
-    
+
+    delete plainFilterObj.agents;//clear not needed fields
+    delete plainFilterObj.defaultFrom;
+    delete plainFilterObj.defaultTo;
+    delete plainFilterObj.quarters;
+
     $.ajax('/ApiHandler.axd', {
       data: {
         entity: 'anlsMag',
@@ -34,7 +39,9 @@
   var filterData = function (plainData) {
     this.from = ko.observable();
     this.to = ko.observable();
-    
+    this.agents = ko.observableArray();
+    this.agent = ko.observable();
+
     this.defaultFrom = null;
     this.defaultTo = null;
     
@@ -46,7 +53,10 @@
       this.defaultFrom = data.defaultFrom;
       this.defaultTo = data.defaultTo;
       this.quarters = data.quarters;
-      
+      this.agents(ko.utils.arrayMap(data.agents, function(item) {
+        return item;
+      }));
+
       this.from(this.defaultFrom);
       this.to(this.defaultTo);
     }

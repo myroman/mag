@@ -11,5 +11,8 @@ namespace Mag.Business.Domain.Analytics
 
         [JsonProperty("to")]
         public DateTime To { get; set; }
+
+        [JsonProperty("agent")]
+        public Agent Agent { get; set; }
     }
 }

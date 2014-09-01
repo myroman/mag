@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Web.UI;
 
 using Autofac;
 
 using Mag.Business;
+using Mag.Business.Abstract;
 using Mag.Business.Domain;
 using Mag.Web.AutofacSupport;
 using Mag.Web.Business;
@@ -15,6 +17,8 @@ namespace Mag.Web.Pages
     public partial class MagAnalytics : Page
     {
         private IUserServiceFacade userServiceFacade;
+
+        private IAgentsRepository agentsRepository;
 
         protected Agent CurrentUser { get; set; }
 
@@ -29,6 +33,7 @@ namespace Mag.Web.Pages
             var container = Context.GetContainer();
 
             userServiceFacade = container.Resolve<IUserServiceFacade>();
+            agentsRepository = container.Resolve<IAgentsRepository>();
         }
 
         protected override void OnLoad(EventArgs e)
@@ -92,7 +97,12 @@ namespace Mag.Web.Pages
                             from = DateHelper.Quart1.ToJsDateString(),
                             to = DateHelper.YearEnd.ToJsDateString(),
                         }
-                    }
+                    },
+                    agents = agentsRepository.List().Select(x => new
+                    {
+                        id = x.Id,
+                        name = x.FullName
+                    })
                 };
             }
         }

@@ -43,3 +43,18 @@
   font-weight: bold;
   background-color: silver;
 }
+
+.b-anls div.date-wrapper {
+  width: 14%;
+}
+.b-anls div.quart-wrapper {
+  width: 18%;
+}
+.b-anls div.agent-wrapper {
+  width: 28%;
+}
+.b-anls .control-label.date {
+  width: auto;
+  padding-left: 0;
+  padding-right: 0;
+}

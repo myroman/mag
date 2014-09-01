@@ -37,5 +37,20 @@ namespace Mag.Business.Domain
         {
             return string.Format("Agent(Id={0},Email={4},Name={1},Pwd={2},Hash={3})", Id, FullName, Password, PasswordHash, Email);
         }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Agent;
+            if (other == null)
+            {
+                return false;
+            }
+            return Id == other.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
     }
 }
