@@ -19,7 +19,7 @@ namespace Mag.Business.Services
 
         private readonly IAccountSettings accountSettings;
 
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public UserService(IAgentsRepository agentsRepository, SimpleAes simpleAesHelper, IAccountSettings accountSettings)
         {
@@ -32,7 +32,7 @@ namespace Mag.Business.Services
         {
             if (msgLevel == Level.Warn)
             {
-                log.WarnFormat(MessageFormatWithAgentDesc, msg, agent);
+                Log.WarnFormat(MessageFormatWithAgentDesc, msg, agent);
             }
             throw new DomainException(msg);
         }
@@ -83,7 +83,7 @@ namespace Mag.Business.Services
             }
             catch (Exception exc)
             {
-                log.Error(string.Format(MessageFormatWithAgentDesc, "Encryption error:{0}", agent), exc);
+                Log.Error(string.Format(MessageFormatWithAgentDesc, "Encryption error:{0}", agent), exc);
                 throw new DomainException("Error when encrypting", exc);
             }
         }
