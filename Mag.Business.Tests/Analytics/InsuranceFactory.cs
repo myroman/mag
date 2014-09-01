@@ -32,6 +32,18 @@ namespace Mag.Business.Tests.Analytics
             }
         }
 
+        public static InsuranceType C
+        {
+            get
+            {
+                return new InsuranceType
+                {
+                    Id = 3,
+                    Name = "C"
+                };
+            }
+        }
+
         // use this if you need to set insurance for a set of sales, so that they aren't grouped.
         public static InsuranceType Rand
         {

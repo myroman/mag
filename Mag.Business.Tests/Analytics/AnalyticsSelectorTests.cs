@@ -146,5 +146,55 @@ namespace Mag.Business.Tests.Analytics
             Assert.AreEqual(2, results.Length);
             Assert.AreEqual(100, results[0].TotalSum);
         }
+
+        [Test]
+        [Category("AnalyticsSelector.Order")]
+        public void RecordsAreSortedByInsuranceType_Test()
+        {
+            var repo = SetupSalesRepositoryReadSales(new[]
+            {
+                SaleFactory.NewSale.PaidSum(100).Insurance(InsuranceFactory.A),
+                SaleFactory.NewSale.PaidSum(200).Insurance(InsuranceFactory.C),
+                SaleFactory.NewSale.PaidSum(150).Insurance(InsuranceFactory.C),
+                SaleFactory.NewSale.PaidSum(2400).Insurance(InsuranceFactory.B),
+            });
+            var results = new AnalyticsSelector(repo).CalculateReport(FilterFactory.AllTime).ToArray();
+
+            Assert.AreEqual(4, results.Length);
+            Assert.AreEqual(100, results[0].TotalSum);
+            Assert.AreEqual("A", results[0].CategoryName);
+
+            Assert.AreEqual(2400, results[1].TotalSum);
+            Assert.AreEqual("B", results[1].CategoryName);
+
+            Assert.AreEqual(350, results[2].TotalSum);
+            Assert.AreEqual("C", results[2].CategoryName);
+        }
+
+        [Test]
+        [Category("AnalyticsSelector.Order")]
+        public void SelectAnAgentAndTheOrderOfInsuranceTypesWillRemain_Test()
+        {
+            var agent1 = AgentFactory.Mock.Id(1);
+            var agent2 = AgentFactory.Mock.Id(2);
+            var repo = SetupSalesRepositoryReadSales(new[]
+            {
+                SaleFactory.NewSale.PaidSum(100).Insurance(InsuranceFactory.A).Agent(agent1),
+                SaleFactory.NewSale.PaidSum(200).Insurance(InsuranceFactory.B).Agent(agent2),
+                SaleFactory.NewSale.PaidSum(150).Insurance(InsuranceFactory.C).Agent(agent1),
+                SaleFactory.NewSale.PaidSum(2400).Insurance(InsuranceFactory.B).Agent(agent1),
+            });
+            var results = new AnalyticsSelector(repo).CalculateReport(FilterFactory.AllTime.ByAgent(agent1)).ToArray();
+
+            Assert.AreEqual(4, results.Length);
+            Assert.AreEqual(100, results[0].TotalSum);
+            Assert.AreEqual("A", results[0].CategoryName);
+
+            Assert.AreEqual(2400, results[1].TotalSum);
+            Assert.AreEqual("B", results[1].CategoryName);
+
+            Assert.AreEqual(150, results[2].TotalSum);
+            Assert.AreEqual("C", results[2].CategoryName);
+        }
     }
 }

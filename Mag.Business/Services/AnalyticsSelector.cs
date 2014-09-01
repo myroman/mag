@@ -24,7 +24,7 @@ namespace Mag.Business.Services
 
         private static IEnumerable<AnalyticsRecord> GroupSales(IEnumerable<Sale> salesToFilter)
         {
-            var salesByInsurance = salesToFilter.GroupBy(x => x.Insurance, x => x);
+            var salesByInsurance = salesToFilter.GroupBy(x => x.Insurance, x => x).OrderBy(x => x.Key.Id);
 
             var groupedSales = salesByInsurance
                 .Select(salesWithSimilarInsurance => new AnalyticsRecord
@@ -48,7 +48,6 @@ namespace Mag.Business.Services
         private IEnumerable<Sale> FilterSales(AnalyticsSelectionFilter filter)
         {
             var salesToFilter = salesRepository.ReadSales()
-                .OrderBy(x => x.CreateDate)
                 .Where(x => x.CreateDate >= filter.From && x.CreateDate <= filter.To);
             if (filter.Agent != null)
             {
