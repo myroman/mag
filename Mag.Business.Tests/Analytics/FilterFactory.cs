@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Mag.Business.Domain;
 using Mag.Business.Domain.Analytics;
 
 namespace Mag.Business.Tests.Analytics
@@ -28,6 +29,12 @@ namespace Mag.Business.Tests.Analytics
                     To = new DateTime(DateHelper.CurrentYear, 7, 1)
                 };
             }
+        }
+
+        public static AnalyticsSelectionFilter ByAgent(this AnalyticsSelectionFilter filter, Agent agent)
+        {
+            filter.Agent = agent;
+            return filter;
         }
     }
 }

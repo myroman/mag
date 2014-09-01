@@ -5,6 +5,7 @@ using System.Linq;
 using Mag.Business.Abstract;
 using Mag.Business.Domain;
 using Mag.Business.Services;
+using Mag.Business.Tests.Account;
 
 using Moq;
 
@@ -36,6 +37,7 @@ namespace Mag.Business.Tests.Analytics
         }
 
         [Test]
+        [Category("AnalyticsSelector.Insurance")]
         public void SalesWithSameInsuranceAreGrouped_Test()
         {
             var repo = SetupSalesRepositoryReadSales(new[]
@@ -57,6 +59,7 @@ namespace Mag.Business.Tests.Analytics
         }
 
         [Test]
+        [Category("AnalyticsSelector.Date")]
         public void SelectOnlySalesWithin2ndQuarterAndCheckOrder_Test()
         {
             var repo = SetupSalesRepositoryReadSales(new[]
@@ -86,6 +89,7 @@ namespace Mag.Business.Tests.Analytics
         }
 
         [Test]
+        [Category("AnalyticsSelector.Date")]
         public void SumOnlySalesWithin2ndQuarter_Test()
         {
             var repo = SetupSalesRepositoryReadSales(new[]
@@ -114,6 +118,7 @@ namespace Mag.Business.Tests.Analytics
         }
 
         [Test]
+        [Category("AnalyticsSelector.Date")]
         public void TotalIsSumEvenIfInsuranceTypesDiffer_Test()
         {
             var repo = SetupSalesRepositoryReadSales(new[]
@@ -124,6 +129,22 @@ namespace Mag.Business.Tests.Analytics
             var results = new AnalyticsSelector(repo).CalculateReport(FilterFactory.AllTime).ToArray();
             Assert.AreEqual(3, results.Length);
             Assert.AreEqual(300, results.Last().TotalSum);
+        }
+
+        [Test]
+        [Category("AnalyticsSelector.Agent")]
+        public void SelectOneAgentSalesWorksCorrect_Test()
+        {
+            var agent1 = AgentFactory.Mock.Id(1);
+            var agent2 = AgentFactory.Mock.Id(2);
+            var repo = SetupSalesRepositoryReadSales(new[]
+            {
+                SaleFactory.NewSale.PaidSum(100).Insurance(InsuranceFactory.A).Agent(agent1),
+                SaleFactory.NewSale.PaidSum(200).Insurance(InsuranceFactory.A).Agent(agent2)
+            });
+            var results = new AnalyticsSelector(repo).CalculateReport(FilterFactory.AllTime.ByAgent(agent1)).ToArray();
+            Assert.AreEqual(2, results.Length);
+            Assert.AreEqual(100, results[0].TotalSum);
         }
     }
 }

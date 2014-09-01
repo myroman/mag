@@ -17,17 +17,21 @@
               <span class='glyphicon glyphicon-refresh'></span>&nbsp;Фильтровать
             </a>
           </div>
-
-          <label for='dtFrom' class='col-lg-1 control-label'>От</label>
-          <div class='col-lg-2'>
+          
+          <div class='col-lg-4 agent-wrapper'>
+            <select data-bind="options: filter.agents, value: filter.agent, optionsText: 'name', optionsCaption: 'Выбрать агента'" class='form-control'></select>
+          </div>
+          
+          <label for='dtFrom' class='col-lg-1 control-label date'>От</label>
+          <div class='col-lg-2 date-wrapper'>
             <input id='dtFrom' type="text" data-bind='datepicker: true, value: filter.from' class='form-control' />
           </div>
-          <label for='dtTo' class='col-lg1 control-label'>До</label>
-          <div class='col-lg-2'>
+          <label for='dtTo' class='col-lg1 control-label date'>До</label>
+          <div class='col-lg-2 date-wrapper'>
             <input id='dtTo' type="text" data-bind='datepicker: true, value: filter.to' class='form-control' />
           </div>
 
-          <div class='col-lg-4'>
+          <div class='col-lg-4 quart-wrapper'>
             <div class="btn-group">
               <a href="#" class="btn btn-info btn-sm">За квартал</a>
               <a href="#" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown">
@@ -43,6 +47,7 @@
               </ul>
             </div>
           </div>
+
         </div>
       </div>
 
