@@ -34,5 +34,11 @@ namespace Mag.Business.Tests.Analytics
             sale.CreateDate = val;
             return sale;
         }
+
+        public static Sale Agent(this Sale sale, Agent val)
+        {
+            sale.Agent = val;
+            return sale;
+        }
     }
 }
