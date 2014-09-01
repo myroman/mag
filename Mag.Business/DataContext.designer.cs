@@ -41,12 +41,6 @@ namespace Mag.Business
     partial void DeletetbInsuranceType(tbInsuranceType instance);
     #endregion
 		
-		public DataContextDataContext() : 
-				base(global::Mag.Business.Properties.Settings.Default.MagConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
-		
 		public DataContextDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
