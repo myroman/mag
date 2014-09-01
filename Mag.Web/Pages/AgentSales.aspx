@@ -103,7 +103,7 @@
       <input type="text" class="inp-sm" data-bind="value: feePc"/>
     </td>
     <td>
-      <input type="text" data-bind="value: fee"/>
+      <input type="text" data-bind="value: fee" readonly="readonly"/>
     </td>
     <td>
       <input type="text" class="inp-lg" data-bind="value: comment"/>
@@ -112,7 +112,7 @@
       <input type="text" class="inp-sm" data-bind="value: addFeePc"/>
     </td>
     <td>
-      <input type="text" data-bind="value: addFee"/>
+      <input type="text" data-bind="value: addFee" readonly="readonly"/>
     </td>
   </script>
 </asp:Content>

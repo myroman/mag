@@ -1,7 +1,9 @@
 ﻿function SalesVm(model) {
   var it = this;
 
-  var saleItem = function(plainData) {
+  var saleItem = function (plainData) {
+    var that = this;
+    
     this.id = 0;
     this.checked = ko.observable();
     this.reportCode = ko.observable();
@@ -13,16 +15,19 @@
     this.paymentsNumber = ko.observable();
     this.paidSum = ko.observable();
     this.feePc = ko.observable();
-    this.fee = ko.observable();
+    this.fee = ko.computed(function () {
+      return that.premium() * that.feePc() / 100;
+    });
     this.comment = ko.observable();
     this.addFeePc = ko.observable();
-    this.addFee = ko.observable();
+    this.addFee = ko.computed(function() {
+      return that.premium() * that.addFeePc() / 100;
+    });
 
     this.update(plainData);
   };
 
   ko.utils.extend(saleItem.prototype, {
-    
     update: function(data) {
       this.id = data.id;
       this.reportCode(data.reportCode);
@@ -40,10 +45,8 @@
       this.paymentsNumber(data.paymentsNumber);
       this.paidSum(data.paidSum);
       this.feePc(data.feePc);
-      this.fee(data.fee);
       this.comment(data.comment);
       this.addFeePc(data.addFeePc);
-      this.addFee(data.addFee);
       this.checked(data.checked);
     }
   });
@@ -61,15 +64,19 @@
     create: ko.observable(''),
     checked: false,
     contractsNumber: ko.observable(),
-    premium: ko.observable(),
-    paymentsNumber: ko.observable(),
-    paidSum: ko.observable(),
-    feePc: ko.observable(),
-    fee: ko.observable(),
-    comment: ko.observable(),
-    addFeePc: ko.observable(),
-    addFee: ko.observable(),
+    premium: ko.observable(0),
+    paymentsNumber: ko.observable(0),
+    paidSum: ko.observable(0),
+    feePc: ko.observable(0),
+    comment: ko.observable(''),
+    addFeePc: ko.observable(0)
   };
+  it.editedSaleData.fee = ko.computed(function() {
+    return it.editedSaleData.premium() * it.editedSaleData.feePc() / 100;
+  });
+  it.editedSaleData.addFee = ko.computed(function() {
+    return it.editedSaleData.premium() * it.editedSaleData.addFeePc() / 100;
+  });
 
   it.currentUser = model.currentUser;
   it.isAdminNow = it.currentUser.isAdmin;
@@ -141,7 +148,6 @@
       }
     });
   };
-
 }
 
 $(function() {

@@ -42,22 +42,10 @@ namespace Mag.Business.Domain
         [JsonProperty("feePc")]
         public double FeePercent { get; set; }
 
-        [JsonProperty("fee")]
-        public double Fee
-        {
-            get { return PaidSum * FeePercent; }
-        }
-
         [JsonProperty("comment")]
         public string Comment { get; set; }
 
         [JsonProperty("addFeePc")]
         public double? AddFeePercent { get; set; }
-
-        [JsonProperty("addFee")]
-        public double AddFee
-        {
-            get { return PaidSum * AddFeePercent.GetValueOrDefault(0); }
-        }
     }
 }
