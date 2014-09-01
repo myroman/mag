@@ -19,7 +19,7 @@
           </div>
           
           <div class='col-lg-4 agent-wrapper'>
-            <select data-bind="options: filter.agents, value: filter.agent, optionsText: 'name', optionsCaption: 'Выбрать агента'" class='form-control'></select>
+            <select data-bind="options: filter.agents, value: filter.agent, optionsText: 'name', optionsCaption: 'Все агенты'" class='form-control'></select>
           </div>
           
           <label for='dtFrom' class='col-lg-1 control-label date'>От</label>
