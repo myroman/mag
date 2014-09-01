@@ -3,10 +3,14 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
+using log4net;
+
 namespace Mag.Business.Services
 {
     public class SimpleAes
     {
+        protected static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         // Change these keys
         private readonly byte[] key = { 123, 217, 19, 11, 24, 26, 85, 45, 114, 184, 27, 162, 37, 112, 222, 209, 241, 24, 175, 144, 173, 53, 196, 29, 24, 26, 17, 218, 131, 236, 53, 209 };
 
@@ -16,7 +20,7 @@ namespace Mag.Business.Services
 
         private readonly ICryptoTransform decryptorTransform;
 
-        private readonly System.Text.UTF8Encoding utfEncoder;
+        private readonly UTF8Encoding utfEncoder;
 
         public SimpleAes()
         {
@@ -54,7 +58,16 @@ namespace Mag.Business.Services
         /// Encrypt some text and return a string suitable for passing in a URL.
         public string EncryptToString(string TextValue)
         {
-            return ByteArrToString(Encrypt(TextValue));
+            try
+            {
+                Log.Info("Gonna encrypt " + TextValue);
+                return ByteArrToString(Encrypt(TextValue));
+            }
+            catch (Exception exc)
+            {
+                Log.Error(string.Format("Can't encrypt text {0}", TextValue), exc);
+                throw;
+            }
         }
 
         /// Encrypt some text and return an encrypted byte array.
