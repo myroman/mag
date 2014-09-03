@@ -9,6 +9,7 @@ namespace Mag.Business.Repositories.Mappers
             return new Agent
                 {
                     Id = from.id,
+                    Login = from.login,
                     Email = from.email,
                     FullName = from.fullName,
                     RegistrationDate = from.regDate,
@@ -21,6 +22,7 @@ namespace Mag.Business.Repositories.Mappers
         {
             return new tbAgent
                 {
+                    login = from.Login,
                     email = from.Email,
                     fullName = from.FullName,
                     regDate = from.RegistrationDate,

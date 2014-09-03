@@ -13,19 +13,8 @@
       <Column Name="feePercent" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="comment" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
       <Column Name="addFeePercent" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="tbAgent_tbSale" Member="tbAgent" ThisKey="agentId" OtherKey="id" Type="tbAgent" IsForeignKey="true" />
       <Association Name="tbInsuranceType_tbSale" Member="tbInsuranceType" ThisKey="insuranceTypeId" OtherKey="id" Type="tbInsuranceType" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbAgents" Member="tbAgents">
-    <Type Name="tbAgent">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="email" Type="System.String" DbType="VarChar(60) NOT NULL" CanBeNull="false" />
-      <Column Name="passwordHash" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="regDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="fullName" Type="System.String" DbType="VarChar(400) NOT NULL" CanBeNull="false" />
-      <Column Name="isAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="tbAgent_tbSale" Member="tbSales" ThisKey="id" OtherKey="agentId" Type="tbSale" />
+      <Association Name="tbAgent_tbSale" Member="tbAgent" ThisKey="agentId" OtherKey="id" Type="tbAgent" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tbInsuranceTypes" Member="tbInsuranceTypes">
@@ -33,6 +22,18 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
       <Association Name="tbInsuranceType_tbSale" Member="tbSales" ThisKey="id" OtherKey="insuranceTypeId" Type="tbSale" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbAgents" Member="tbAgents">
+    <Type Name="tbAgent">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="login" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Column Name="passwordHash" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="regDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fullName" Type="System.String" DbType="VarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="isAdmin" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tbAgent_tbSale" Member="tbSales" ThisKey="id" OtherKey="agentId" Type="tbSale" />
     </Type>
   </Table>
 </Database>

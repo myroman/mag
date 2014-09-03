@@ -44,7 +44,7 @@ namespace Mag.Business.Services
                 LogAndThrowDomainExc("Вы ввели неверный код доступа", agent, Level.Warn);
             }
 
-            if (agentsRepository.FindByEmail(agent.Email) != null)
+            if (agentsRepository.FindByLogin(agent.Login) != null)
             {
                 LogAndThrowDomainExc("Такой пользователь уже зарегистрирован", agent, Level.Warn);
             }
@@ -57,7 +57,7 @@ namespace Mag.Business.Services
 
         public void Login(Agent agent)
         {
-            var foundAgent = agentsRepository.FindByEmail(agent.Email);
+            var foundAgent = agentsRepository.FindByLogin(agent.Login);
             if (foundAgent == null)
             {
                 LogAndThrowDomainExc("Такого пользователя нет", agent, Level.Warn);
@@ -88,9 +88,9 @@ namespace Mag.Business.Services
             }
         }
 
-        public Agent GetUserByEmailAndHash(string email, string passwordHash)
+        public Agent GetUserByLoginAndHash(string login, string passwordHash)
         {
-            return agentsRepository.List().FirstOrDefault(x => x.Email.Equals(email) && x.PasswordHash.Equals(passwordHash));
+            return agentsRepository.List().FirstOrDefault(x => x.Login == login && x.PasswordHash == passwordHash);
         }
     }
 }

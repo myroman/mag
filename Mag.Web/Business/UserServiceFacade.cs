@@ -44,15 +44,15 @@ namespace Mag.Web.Business
                 return null;
             }
             
-            return UserService.GetUserByEmailAndHash(userInfoArr[0], userInfoArr[1]);
+            return UserService.GetUserByLoginAndHash(userInfoArr[0], userInfoArr[1]);
         }
 
         public void RegisterUser(Agent newUser)
         {
             UserService.RegisterUser(newUser);
-            if (!string.IsNullOrEmpty(newUser.Email) && !string.IsNullOrEmpty(newUser.PasswordHash))
+            if (!string.IsNullOrEmpty(newUser.Login) && !string.IsNullOrEmpty(newUser.PasswordHash))
             {
-                var cookieValue = newUser.Email + "|" + newUser.PasswordHash;
+                var cookieValue = newUser.Login + "|" + newUser.PasswordHash;
                 HttpContext.Current.Response.AppendCookie(new HttpCookie(UserCookieKey, cookieValue));
             }
         }
@@ -60,7 +60,7 @@ namespace Mag.Web.Business
         public void LoginUser(Agent user)
         {
             UserService.Login(user);
-            var cookieValue = user.Email + "|" + user.PasswordHash;
+            var cookieValue = user.Login + "|" + user.PasswordHash;
 
             HttpContext.Current.Response.AppendCookie(new HttpCookie(UserCookieKey, cookieValue));
         }

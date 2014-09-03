@@ -12,6 +12,9 @@ namespace Mag.Business.Domain
         [JsonProperty("fullName")]
         public string FullName { get; set; }
 
+        [JsonProperty("login")]
+        public string Login { get; set; }
+
         [JsonProperty("email")]
         public string Email { get; set; }
 
@@ -35,7 +38,7 @@ namespace Mag.Business.Domain
 
         public override string ToString()
         {
-            return string.Format("Agent(Id={0},Email={4},Name={1},Pwd={2},Hash={3})", Id, FullName, Password, PasswordHash, Email);
+            return string.Format("Agent(Id={0},Login={4},Name={1},Pwd={2},Hash={3})", Id, FullName, Password, PasswordHash, Login);
         }
 
         public override bool Equals(object obj)

@@ -44,17 +44,17 @@ namespace Mag.Business.Repositories
             return null;
         }
 
-        public Agent FindByEmail(string email)
+        public Agent FindByLogin(string login)
         {
-            Log.InfoFormat("Finding by email={0}...", email);
-            var agentOrNull = List().FirstOrDefault(agent => agent.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            Log.InfoFormat("Finding by login={0}...", login);
+            var agentOrNull = List().FirstOrDefault(agent => agent.Login == login);
             if (agentOrNull != null)
             {
-                Log.InfoFormat("Found agent {0}", email);
+                Log.InfoFormat("Found agent {0}", login);
             }
             else
             {
-                Log.WarnFormat("Haven't found agent by email={0}", email);
+                Log.WarnFormat("Haven't found agent by login={0}", login);
             }
             return agentOrNull;
         }

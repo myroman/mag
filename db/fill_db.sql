@@ -16,7 +16,8 @@ go
 create table tbAgents
 (
 [id] int identity(1, 1),
-[email] varchar(60) not null,
+[login] varchar(60),
+[email] varchar(60),
 [passwordHash] varchar(100) not null,
 [regDate] datetime not null,
 [fullName] varchar(400) not null,

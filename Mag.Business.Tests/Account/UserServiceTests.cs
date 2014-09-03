@@ -17,7 +17,7 @@ namespace Mag.Business.Tests.Account
         {
             var m = new Mock<IAgentsRepository>();
             m.Setup(x => x.Add(It.IsAny<Agent>()));
-            m.Setup(x => x.FindByEmail(It.IsAny<string>())).Returns((Agent)null);
+            m.Setup(x => x.FindByLogin(It.IsAny<string>())).Returns((Agent)null);
 
             var a = new Mock<IAccountSettings>();
             a.Setup(x => x.RegistrationAccessCode).Returns("some code");

@@ -25,16 +25,13 @@
         </div>
 
         <div class='form-group'>
-          <%--todo Добавить подсказку что он будет исопльзоваться если забудете пароль--%>
-          <asp:Label runat="server" CssClass="<%# LabelCssClass %>" Text="E-mail" AssociatedControlID="txtEmail"/>
+          <asp:Label runat="server" CssClass="<%# LabelCssClass %>" Text="Логин" AssociatedControlID="txtLogin"/>
           <div class='<%# InputWrapperCssClass %>'>
-            <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" />
+            <asp:TextBox runat="server" ID="txtLogin" CssClass="form-control" />
           </div>
           <div class='<%# ValidInputCssClass %>'>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtEmail"
-              CssClass="control-label" ErrorMessage="Введите e-mail." />
-            <asp:RegularExpressionValidator runat="server" ErrorMessage="Введите правильный e-mail." CssClass="control-label" 
-            ControlToValidate="txtEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtLogin"
+              CssClass="control-label" ErrorMessage="Введите логин." />
           </div>
         </div>
         

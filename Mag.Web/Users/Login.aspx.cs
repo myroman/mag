@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using System.Web.UI;
 
 using Autofac;
@@ -34,7 +33,7 @@ namespace Mag.Web.Users
         {
             var user = new Agent
             {
-                Email = txtEmail.Text,
+                Login = txtLogin.Text,
                 Password = txtPassword.Text
             };
             try

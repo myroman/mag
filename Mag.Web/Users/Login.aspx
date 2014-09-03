@@ -13,13 +13,13 @@
 
       <fieldset>
         <div class='form-group'>
-          <asp:Label runat="server" CssClass="<%# LabelCssClass %>" AssociatedControlID="txtEmail" Text="E-mail" />
+          <asp:Label runat="server" CssClass="<%# LabelCssClass %>" AssociatedControlID="txtLogin" Text="Логин" />
           <div class="<%# InputWrapperCssClass %>">
-            <asp:TextBox runat="server" ID="txtEmail" CssClass="form-control" />
+            <asp:TextBox runat="server" ID="txtLogin" CssClass="form-control" />
           </div>
           <div class="<%# ValidInputCssClass %>">
-            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail" 
-              CssClass="control-label" ErrorMessage="Введите e-mail." />
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="txtLogin" 
+              CssClass="control-label" ErrorMessage="Введите логин." />
           </div>
         </div>
 
